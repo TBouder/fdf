@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/02 18:35:15 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/03 11:10:08 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 ** The ft_dotnew() function creates a new link with the dot datas.
 */
 
-static t_dot		*ft_dotnew(int x, int y, int z, int color)
+static t_dot		*ft_dotnew(t_coo coo, int color, int id)
 {
 	t_dot	*dot;
 
 	if (!(dot = (t_dot *)malloc(sizeof(t_dot))))
 		return (NULL);
 	dot->color = color;
-	dot->x = x;
-	dot->y = y;
-	dot->z = z;
+	dot->x = coo.x;
+	dot->y = coo.y;
+	dot->z = coo.z;
+	dot->id = id;
 	dot->next = NULL;
 	return (dot);
 }
@@ -34,7 +35,7 @@ static t_dot		*ft_dotnew(int x, int y, int z, int color)
 ** The ft_dotend() function push the link at the end of the chained list.
 */
 
-static void			ft_dotend(t_dot **dot, t_coo coo, int color)
+static void			ft_dotend(t_dot **dot, t_coo coo, int color, int id)
 {
 	t_dot	*new_dot;
 
@@ -43,10 +44,10 @@ static void			ft_dotend(t_dot **dot, t_coo coo, int color)
 	{
 		while (new_dot->next != NULL)
 			new_dot = new_dot->next;		
-		new_dot->next = ft_dotnew(coo.x, coo.y, coo.z, color);
+		new_dot->next = ft_dotnew(coo, color, id);
 	}
 	else
-		*dot = ft_dotnew(coo.x, coo.y, coo.z, color);
+		*dot = ft_dotnew(coo, color, id);
 }
 
 /*
@@ -102,12 +103,13 @@ static int			ft_str_to_dot_helper(char *str)
 ** list, with, for each dot, X, Y, Z, COLOR.
 */
 
-t_dot				**ft_str_to_dot(char *str, t_dot **dot)
+t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
 {
 	t_coo	coo;
 	int		i;
 
 	i = 0;
+	id = 0;
 	coo.x = 0;
 	coo.y = 1;
 	while (str[i])
@@ -116,7 +118,7 @@ t_dot				**ft_str_to_dot(char *str, t_dot **dot)
 		{
 			coo.x++;
 			coo.z = ft_atoi_part(str, i);
-			ft_dotend(dot, coo, ft_extract_color(str, i));
+			ft_dotend(dot, coo, ft_extract_color(str, i), id++);
 			i += (ft_atoi_part(str, i) == 0) ? 1 :
 				ft_nbrlen(ft_atoi_part(str, i));
 		}
