@@ -6,13 +6,12 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/02 19:00:56 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/03 17:27:56 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
 #include <stdio.h>//
-
 
 int		ft_dotlen(t_dot *begin_dot)
 {
@@ -26,7 +25,6 @@ int		ft_dotlen(t_dot *begin_dot)
 	}
 	return (nb);
 }
-
 
 char	*ft_extract_map(char *file, int fd)
 {
@@ -50,16 +48,64 @@ char	*ft_extract_map(char *file, int fd)
 	return (string);
 }
 
-void		ft_place_dots(void *mlx, void *win, t_dot *dot)
+/*-----MAX_X_Y------*/
+
+int		ft_max_x(t_dot *dot)
 {
+	int		max_x;
+
+	max_x = 0;
 	while (dot)
 	{
-		mlx_pixel_put(mlx, win, ((dot->x) * 28), ((dot->y) * 28), dot->color);
+		if (dot->x > max_x)
+			max_x = dot->x;
+		dot = dot->next;
+	}
+	return (max_x);
+}
+
+int		ft_max_y(t_dot *dot)
+{
+	int		max_y;
+
+	max_y = 0;
+	while (dot)
+	{
+		if (dot->y > max_y)
+			max_y = dot->y;
+		dot = dot->next;
+	}
+	return (max_y);
+}
+
+/*-----PLACE&LINK DOTS------*/
+
+void		ft_place_dots(t_win w, t_dot *dot)
+{
+	int		x;
+	int		y;
+
+	while (dot)
+	{
+			// dot->x += ZOOM;
+			// dot->y += ZOOM;
+		// x = w.max_x / 2 +			(dot->x - dot->y) * (ZOOM / 2);
+		// y = ZOOM+					(dot->x + dot->y) * (ZOOM / 2);
+
+		// x = w.max_x / 2 +		(dot->x - dot->z) * tan(30);
+		// y = w.max_y / 2 +		(dot->y) + (dot->x + dot->z) * tan(30);
+		
+		// x = cos(30);
+		// y = sin(30);
+		
+		x = dot->x * ZOOM - dot->z * ZOOM;
+		y = dot->y * ZOOM;
+		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
 		dot = dot->next;
 	}
 }
 
-void		ft_link_dots_x(void *mlx, void *win, t_dot *dot)
+void		ft_link_dots_x(t_win w, t_dot *dot)
 {
 	t_dot	*doot;
 	int		i;
@@ -70,55 +116,58 @@ void		ft_link_dots_x(void *mlx, void *win, t_dot *dot)
 	j = 0;
 	while (i < ft_dotlen(doot) - 1)
 	{
-		if (dot->next->x != 0)
+		if (dot->next->x != 0 && dot->next->z == 0)
 		{
-			j = (dot->x * 28);
-			while (j < (dot->next->x * 28))
-				mlx_pixel_put(mlx, win, j++, ((dot->y) * 28), dot->color);
+			j = (dot->x * ZOOM);
+			while (j < (dot->next->x * ZOOM))
+				mlx_pixel_put(w.mlx, w.window, j++, ((dot->y) * ZOOM), dot->color);
 		}
 		dot = dot->next;
 		i++;
 	}
 }
 
-void		ft_link_dots_y(void *mlx, void *win, t_dot *dot)
+void		ft_link_dots_y(t_win w, t_dot *dot)
 {
 	t_dot	*doot;
-	int		i;
 	int		j;
+	int		previous_y;
 
 	doot = dot;
-	i = 0;
-	j = 0;
-	while (i < ft_dotlen(doot) - 1)
+	previous_y = dot->y;
+	while (dot)
 	{
-		if (dot->next->y == dot->y)
+		if (dot->y != previous_y)
 		{
-			j = (dot->y * 28);
-			while (j < (dot->next->y * 28))
-				mlx_pixel_put(mlx, win, ((dot->x) * 28), j++, dot->color);
+			j = (previous_y * ZOOM);
+			while (j < (dot->y * ZOOM))
+				mlx_pixel_put(w.mlx, w.window, ((dot->x) * ZOOM), j++, dot->color);
+			previous_y = dot->y;
 		}
 		dot = dot->next;
-
-		i++;
 	}
+	dot = doot;
+	doot = doot->next;
 }
+
+
+/*-----------*/
 
 void		window(char *name, t_dot *dot)
 {
-	void	*mlx;
-	void	*win;
+	t_win	w;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 600, 400, name);
-	ft_place_dots(mlx, win, dot);
-	ft_link_dots_x(mlx, win, dot);
-	ft_link_dots_y(mlx, win, dot);
-	mlx_loop(mlx);
+	w.mlx = mlx_init();
+	w.name = name;
+	w.max_x = (ZOOM + 2) * ft_max_x(dot) * 3;
+	w.max_y = (ZOOM + 2) * ft_max_y(dot) * 3;
+	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
+
+	ft_place_dots(w, dot);
+	ft_link_dots_x(w, dot);
+	ft_link_dots_y(w, dot);
+	mlx_loop(w.mlx);
 }
-
-
-
 
 void		ft_dotprint(t_dot *begin_dot)
 {
@@ -128,7 +177,7 @@ void		ft_dotprint(t_dot *begin_dot)
 	while (begin_dot)
 	{
 		ft_putstr("Dot n_");
-		ft_putnbr(i++);
+		ft_putnbr(begin_dot->id);
 		ft_putstr(" : x-");
 		ft_putnbr(begin_dot->x);
 		ft_putstr(" | y-");
@@ -152,9 +201,10 @@ int			main(int ac, char **av)
 	if (ac == 2 && fd != -1)
 	{
 		str = ft_extract_map(av[1], fd);
-		ft_str_to_dot(str, &dot);
+		ft_str_to_dot(str, &dot, 0);
 		ft_dotprint(dot);
 		window(av[1], dot);
+		// printf("%d\n", ft_max_x(dot));
 	}
 	return (0);
 }
