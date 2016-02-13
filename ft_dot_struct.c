@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/03 11:10:08 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/12 13:38:09 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ static int			ft_extract_color(char *str, int i)
 		return (ft_atoi_hexa(&str[j]));
 	}
 	else
-	{		
 		return (16777215);
-	}
 }
 
 /*
@@ -114,7 +112,7 @@ t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
 	coo.y = 1;
 	while (str[i])
 	{
-		if (ft_isnumber(str[i]))
+		if (ft_isnumber(str[i]) || str[i] == '-')
 		{
 			coo.x++;
 			coo.z = ft_atoi_part(str, i);

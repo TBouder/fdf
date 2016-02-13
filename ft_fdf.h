@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/03 13:39:20 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/12 16:33:04 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@
 # include <string.h>
 # include <math.h>
 
-# define ZOOM 28
+# include <stdio.h>//
+
+# define ZOOM 14
 # define PI 3.14159265
+# define POS_X 0
+# define POS_Y (w.max_y / 2)
 
 typedef struct		s_coo
 {
@@ -52,8 +56,10 @@ typedef struct		s_win
 	char			*name;
 }					t_win;
 
-
 t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id);
-
+int					ft_max_x(t_dot *dot);
+int					ft_max_y(t_dot *dot);
+void				ft_place_dots(t_win w, t_dot *dot);
+void				ft_place_height(t_win w, t_dot *dot);
 
 #endif
