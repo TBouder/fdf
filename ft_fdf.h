@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 16:51:49 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 17:07:25 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ int					ft_max_y(t_dot *dot);
 void				ft_place_dots(t_win w, t_dot *dot);
 void				ft_link_down_to_up(t_win w, t_dot *dot);
 void				ft_place_height_second(t_win w, t_dot *dot);
+
+int					ft_nbrounded_down(float nb);
 
 #endif
