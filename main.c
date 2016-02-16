@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:07:40 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 17:41:27 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		ft_dotprint(t_dot *begin_dot)
 	}
 }
 
-int		ft_nbrounded_down(float nb)
+int			ft_nbrounded_down(float nb)
 {
 	int		i;
 	int		len;
