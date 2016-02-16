@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 21:16:35 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 21:30:28 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void		window(char *name, t_dot *dot)
 	max_x = ft_max_x(dot);
 	w.mlx = mlx_init();
 	w.name = name;
-	w.max_x = 600;
-	w.max_y = 600;
+	w.max_x = 1000;
+	w.max_y = 1000;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 
 	ft_place_dots(w, dot);
