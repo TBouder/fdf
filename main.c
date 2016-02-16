@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:48:37 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 17:49:23 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void		ft_dotprint(t_dot *begin_dot)
 	i = 0;
 	while (begin_dot->next)
 	{
-		// ft_putstr("Dot n_");
-		// ft_putnbr(begin_dot->id);
-		// ft_putstr(" : x = ");
-		// ft_putnbr(begin_dot->x);
-		// ft_putstr(" | y = ");
-		// ft_putnbr(begin_dot->y);
-		// ft_putstr(" | z = ");
-		// ft_putnbr(begin_dot->z);
-		// ft_putstr(" | color = ");
-		// ft_nbrendl(begin_dot->color);
+		ft_putstr("Dot n_");
+		ft_putnbr(begin_dot->id);
+		ft_putstr(" : x = ");
+		ft_putnbr(begin_dot->x);
+		ft_putstr(" | y = ");
+		ft_putnbr(begin_dot->y);
+		ft_putstr(" | z = ");
+		ft_putnbr(begin_dot->z);
+		ft_putstr(" | color = ");
+		ft_nbrendl(begin_dot->color);
 		begin_dot = begin_dot->next;
 	}
 }
