@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:41:27 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 17:48:37 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void		window(char *name, t_dot *dot)
 	ft_link_down_to_up(w, dot);
 	ft_place_height_second(w, dot);
 	
-	// ft_dotprint(dot);
 	mlx_loop(w.mlx);
 }
 
