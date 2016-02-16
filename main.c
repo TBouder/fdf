@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 16:22:51 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 16:54:56 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,33 @@ void		ft_dotprint(t_dot *begin_dot)
 	int		i;
 
 	i = 0;
-	while (begin_dot)
+	while (begin_dot->next)
 	{
-		ft_putstr("Dot n_");
-		ft_putnbr(begin_dot->id);
-		ft_putstr(" : x = ");
-		ft_putnbr(begin_dot->x);
-		ft_putstr(" | y = ");
-		ft_putnbr(begin_dot->y);
-		ft_putstr(" | z = ");
-		ft_putnbr(begin_dot->z);
-		ft_putstr(" | color = ");
-		ft_nbrendl(begin_dot->color);
+		// ft_putstr("Dot n_");
+		// ft_putnbr(begin_dot->id);
+		// ft_putstr(" : x = ");
+		// ft_putnbr(begin_dot->x);
+		// ft_putstr(" | y = ");
+		// ft_putnbr(begin_dot->y);
+		// ft_putstr(" | z = ");
+		// ft_putnbr(begin_dot->z);
+		// ft_putstr(" | color = ");
+		// ft_nbrendl(begin_dot->color);
 		begin_dot = begin_dot->next;
 	}
 }
+
+int		ft_nbrounded_down(float nb)
+{
+	int		i;
+
+	i = 0;
+	while (i < nb)
+		i++;
+	return (i - 1);
+}
+
+
 
 /*-----------*/
 
@@ -72,8 +84,9 @@ void		window(char *name, t_dot *dot)
 	ft_place_dots(w, dot);
 	ft_link_down_to_up(w, dot);
 	ft_place_height_second(w, dot);
-	// ft_dotprint(dot);
+		ft_dotprint(dot);
 
+printf("%d\n", ft_nbrounded_down(5555555555.98));
 	mlx_loop(w.mlx);
 }
 
@@ -89,7 +102,6 @@ int			main(int ac, char **av)
 	{
 		str = ft_extract_map(av[1], fd);
 		ft_str_to_dot(str, &dot, 0);
-		// ft_dotprint(dot);
 		window(av[1], dot);
 		// printf("%d\n", ft_max_x(dot));
 	}
