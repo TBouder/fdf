@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:49:23 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 17:54:56 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ char	*ft_extract_map(char *file, int fd)
 
 void		ft_dotprint(t_dot *begin_dot)
 {
-	int		i;
-
-	i = 0;
 	while (begin_dot->next)
 	{
 		ft_putstr("Dot n_");
