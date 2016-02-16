@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/04 14:18:38 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:59:36 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 19:08:06 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,41 @@ int			ft_dotlen(t_dot *begin_dot)
 	return (nb);
 }
 
-t_dot		*ft_doot_z(t_dot *doot, int n)
+t_dot		*ft_doot_z(t_dot *dot, int n)
 {
 	int		i;
 
 	i = 0;
-	if (doot == NULL)
+	if (dot == NULL)
 		return (0);
 	while (i < n)
 	{
-		doot = doot->next;
-		if (doot == NULL)
+		dot = dot->next;
+		if (dot == NULL)
 			return (NULL);
 		i++;
 	}
-	return (doot);
+	return (dot);
 }
+
+t_dot		*ft_dotnbnext(t_dot *dot, int n)
+{
+	int		i;
+
+	i = 0;
+	if (dot == NULL)
+		return (0);
+	while (i < n)
+	{
+		dot = dot->next;
+		if (dot == NULL)
+			return (NULL);
+		i++;
+	}
+	return (dot);
+}
+
+/*----*/
 
 void		ft_place_dots(t_win w, t_dot *dot)
 {
@@ -60,7 +79,6 @@ void		ft_place_dots(t_win w, t_dot *dot)
 			if (ft_doot_z(dot, max_x) && ft_doot_z(dot, max_x)->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
 					(y + i) * sin(30 * (PI / 180)), 16777215);
-
 			if (dot->next && dot->x % max_x != 0 && dot->next->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
 					(y - i) * sin(30 * (PI / 180)), 16777215);
@@ -71,7 +89,7 @@ void		ft_place_dots(t_win w, t_dot *dot)
 	}
 }
 
-void		ft_link_down_to_up(t_win w, t_dot *dot)
+void		ft_link_down_to_up_h(t_win w, t_dot *dot)
 {
 	float		a;
 	int			i;
@@ -82,10 +100,10 @@ void		ft_link_down_to_up(t_win w, t_dot *dot)
 		if (dot->next->z > dot->z)
 		{
 			i = 0;
-			while (i < ZOOM * 1.9)
+			while (i < ZOOM * dot->next->z)
 			{
 				mlx_pixel_put(w.mlx, w.window,
-					dot->x + i * (a * -tan(30 * (PI / 180))),
+					dot->x + i, //* (a * -tan(30 * (PI / 180))),
 					dot->y - i,
 					65408);
 				i++;
@@ -95,7 +113,7 @@ void		ft_link_down_to_up(t_win w, t_dot *dot)
 	}
 }
 
-void		ft_place_height_second(t_win w, t_dot *dot)
+void		ft_link_up_to_down_h(t_win w, t_dot *dot)
 {
 	float		a;
 	int			i;
@@ -106,12 +124,39 @@ void		ft_place_height_second(t_win w, t_dot *dot)
 		if (dot->next->z < dot->z)
 		{
 			i = 0;
-			while (i <= ZOOM)
+			while (i <= ZOOM * dot->z)
 			{
 				mlx_pixel_put(w.mlx, w.window,
 					dot->x + i,
-					dot->y + i * 0.785,
+					dot->y + i,// * 0.785,
 					65408);
+				i++;
+			}
+		}
+		dot = dot->next;
+	}
+}
+
+void		ft_link_down_to_up_v(t_win w, t_dot *dot, int max_x)
+{
+	t_dot		*doot;
+	float		a;
+	int			i;
+
+	while (dot->next)
+	{
+		a = 0;
+		if ((doot = ft_dotnbnext(dot, max_x)) != NULL)
+			a = (doot->y - dot->y) / (doot->x - dot->x);
+		if (doot && doot->z > dot->z)
+		{
+			i = 0;
+			while (i < ZOOM)
+			{
+				mlx_pixel_put(w.mlx, w.window,
+					dot->x - i * (a * -tan(30 * (PI / 180))),
+					dot->y - i,
+					16669294);
 				i++;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:57:51 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 19:02:36 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int			ft_nbrounded_down(float nb)
 void		window(char *name, t_dot *dot)
 {
 	t_win	w;
+	int		max_x;
 
+	max_x = ft_max_x(dot);
 	w.mlx = mlx_init();
 	w.name = name;
 	// w.max_x = (ZOOM + 2) * ft_max_x(dot) * 3;
@@ -79,8 +81,9 @@ void		window(char *name, t_dot *dot)
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 
 	ft_place_dots(w, dot);
-	ft_link_down_to_up(w, dot);
-	ft_place_height_second(w, dot);
+	ft_link_down_to_up_h(w, dot);
+	ft_link_up_to_down_h(w, dot);
+	// ft_link_down_to_up_v(w, dot, max_x);
 	
 	mlx_loop(w.mlx);
 }

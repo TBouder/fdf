@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 17:07:25 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 18:53:59 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,10 @@ t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id);
 int					ft_max_x(t_dot *dot);
 int					ft_max_y(t_dot *dot);
 void				ft_place_dots(t_win w, t_dot *dot);
-void				ft_link_down_to_up(t_win w, t_dot *dot);
-void				ft_place_height_second(t_win w, t_dot *dot);
+void				ft_link_down_to_up_h(t_win w, t_dot *dot);
+void				ft_link_up_to_down_h(t_win w, t_dot *dot);
+void				ft_link_down_to_up_v(t_win w, t_dot *dot, int max_x);
+
 
 int					ft_nbrounded_down(float nb);
 
