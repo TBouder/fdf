@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 19:02:36 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 19:31:01 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,14 @@ void		window(char *name, t_dot *dot)
 	max_x = ft_max_x(dot);
 	w.mlx = mlx_init();
 	w.name = name;
-	// w.max_x = (ZOOM + 2) * ft_max_x(dot) * 3;
-	// w.max_y = (ZOOM + 2) * ft_max_y(dot) * 3;
 	w.max_x = 600;
 	w.max_y = 600;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 
 	ft_place_dots(w, dot);
-	ft_link_down_to_up_h(w, dot);
-	ft_link_up_to_down_h(w, dot);
+	ft_link_one(w, dot);
+	// ft_link_down_to_up_h(w, dot);
+	// ft_link_up_to_down_h(w, dot);
 	// ft_link_down_to_up_v(w, dot, max_x);
 	
 	mlx_loop(w.mlx);
@@ -101,7 +100,6 @@ int			main(int ac, char **av)
 		str = ft_extract_map(av[1], fd);
 		ft_str_to_dot(str, &dot, 0);
 		window(av[1], dot);
-		// printf("%d\n", ft_max_x(dot));
 	}
 	return (0);
 }
