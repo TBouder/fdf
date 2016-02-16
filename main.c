@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 21:05:03 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 21:16:35 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void		window(char *name, t_dot *dot)
 
 	ft_place_dots(w, dot);
 	ft_link_one(w, dot);
-	// ft_link_two(w, dot);
+	ft_link_two(w, dot, max_x);
+
 	// ft_link_down_to_up_h(w, dot);
 	// ft_link_up_to_down_h(w, dot);
 	// ft_link_down_to_up_v(w, dot, max_x);
