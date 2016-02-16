@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fdf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/12 16:33:04 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 15:45:16 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id);
 int					ft_max_x(t_dot *dot);
 int					ft_max_y(t_dot *dot);
 void				ft_place_dots(t_win w, t_dot *dot);
-void				ft_place_height(t_win w, t_dot *dot);
+void				ft_link_down_to_up(t_win w, t_dot *dot);
+void				ft_place_height_second(t_win w, t_dot *dot);
 
 #endif
