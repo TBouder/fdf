@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 16:54:56 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/16 17:07:40 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,12 @@ void		ft_dotprint(t_dot *begin_dot)
 int		ft_nbrounded_down(float nb)
 {
 	int		i;
+	int		len;
 
-	i = 0;
+	len = ft_nbrlen((int) nb);
+	i = ft_power(10, len - 1);
 	while (i < nb)
-		i++;
+		i += 1;
 	return (i - 1);
 }
 
@@ -84,9 +86,8 @@ void		window(char *name, t_dot *dot)
 	ft_place_dots(w, dot);
 	ft_link_down_to_up(w, dot);
 	ft_place_height_second(w, dot);
-		ft_dotprint(dot);
-
-printf("%d\n", ft_nbrounded_down(5555555555.98));
+	
+	// ft_dotprint(dot);
 	mlx_loop(w.mlx);
 }
 
