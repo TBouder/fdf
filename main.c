@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 21:30:28 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/17 12:46:37 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void		window(char *name, t_dot *dot)
 	int		max_x;
 
 	max_x = ft_max_x(dot);
-	w.mlx = mlx_init();
+	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.max_x = 1000;
 	w.max_y = 1000;
