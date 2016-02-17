@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 21:37:44 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/17 13:59:05 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next)
 	y = dot->y;
 	while (y < dot_next->y)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 3113674);
+		mlx_pixel_put(w.mlx, w.window, x, y, 0);
 		x += coef_y;
 		y += 1;
 	}
