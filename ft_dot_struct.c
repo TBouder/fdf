@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dot_struct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/12 13:38:09 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 17:36:27 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
 	int		i;
 
 	i = 0;
-	id = 0;
 	coo.x = 0;
 	coo.y = 1;
 	while (str[i])
