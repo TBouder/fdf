@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/18 17:36:27 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 18:03:52 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int			ft_str_to_dot_helper(char *str)
 ** list, with, for each dot, X, Y, Z, COLOR.
 */
 
-t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
+t_dot				**ft_str_to_dot_noGNL(char *str, t_dot **dot, int id)
 {
 	t_coo	coo;
 	int		i;
@@ -124,6 +124,32 @@ t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
 			coo.x = 0;
 			coo.y++;
 		}
+		i += ft_str_to_dot_helper(&str[i]);
+	}
+	return (dot);
+}
+
+/* wGNL */
+t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id, int y)
+{
+	t_coo	coo;
+	int		i;
+
+	i = 0;
+	coo.x = 0;
+	coo.y = y;
+	while (str[i])
+	{
+		if (ft_isnumber(str[i]) || str[i] == '-')
+		{
+			coo.x++;
+			coo.z = ft_atoi_part(str, i);
+			ft_dotend(dot, coo, ft_extract_color(str, i), id++);
+			i += (ft_atoi_part(str, i) == 0) ? 1 :
+				ft_nbrlen(ft_atoi_part(str, i));
+		}
+		if (str[i] == '\0')
+			coo.x = 0;
 		i += ft_str_to_dot_helper(&str[i]);
 	}
 	return (dot);

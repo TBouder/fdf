@@ -6,47 +6,11 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/18 17:38:57 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 18:07:38 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
-
-char	*ft_extract_map(char *file, int fd)
-{
-	char	buffer;
-	char	*string;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (read(fd, &buffer, 1) > 0)
-		i++;
-	close(fd);
-	fd = open(file, O_RDONLY);
-	if (!(string = (char *)malloc(sizeof(char *) * (i + 1))) && fd != -1)
-		return (NULL);
-	while (read(fd, &buffer, 1) > 0)
-		string[j++] = buffer;
-	close(fd);
-	string[j] = '\0';
-	return (string);
-}
-
-// char	*ft_extract_map(char *file, int fd)
-// {
-// 	char	buffer;
-// 	char	*string;
-// 	int		i;
-// 	int		j;
-
-// 	i = 0;
-// 	j = 0;
-// 	get_next_line(fd, &string);
-// 	return (string);
-// }
-
 
 void		ft_dotprint(t_dot *begin_dot)
 {
@@ -64,8 +28,10 @@ void		ft_dotprint(t_dot *begin_dot)
 		// ft_putstr(" | color = ");
 		// ft_nbrendl(begin_dot->color);
 		begin_dot = begin_dot->next;
+		if (begin_dot->id % 19 == 0 && begin_dot->id != 1)
+			ft_putchar('\n');
+
 	}
-	ft_puchar('\n');
 }
 
 int			ft_nbrounded_down(float nb)
@@ -108,6 +74,7 @@ void		window(char *name, t_dot *dot)
 int			main(int ac, char **av)
 {
 	int		fd;
+	int		y;
 	char	*str;
 	t_dot	*dot = NULL;
 
@@ -115,35 +82,15 @@ int			main(int ac, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (ac == 2 && fd != -1)
 	{
-		// str = ft_extract_map(av[1], fd);
-		get_next_line(fd, &str);
-		printf("%s\n", str);
-		ft_str_to_dot(str, &dot, 0);
-		ft_dotprint(dot);
-
-		get_next_line(fd, &str);
-		printf("%s\n", str);
-		ft_str_to_dot(str, &dot, 0);
-		ft_dotprint(dot);
-
-
-		get_next_line(fd, &str);
-		printf("%s\n", str);
-		ft_str_to_dot(str, &dot, 0);
-		ft_dotprint(dot);
-
-
-		get_next_line(fd, &str);
-		printf("%s\n", str);
-		ft_str_to_dot(str, &dot, 0);
-		ft_dotprint(dot);
-
-
-
-		// printf("%s\n", str);
-		// ft_str_to_dot(str, &dot, 0);
-		// ft_dotprint(dot);
-		// window(av[1], dot);
+		y = 1;
+		while (get_next_line(fd, &str))
+		{
+			ft_str_to_dot(str, &dot, 0, y++);
+			printf("%s\n", str);
+			free(str);
+			str = NULL;
+		}
+		window(av[1], dot);
 	}
 	return (0);
 }
