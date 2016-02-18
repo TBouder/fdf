@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/18 17:23:27 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 17:55:49 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct		s_win
 	char			*name;
 }					t_win;
 
-t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id);
+t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id, int y);
 int					ft_max_x(t_dot *dot);
 int					ft_max_y(t_dot *dot);
 
