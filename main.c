@@ -6,11 +6,33 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/17 13:33:00 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 17:07:24 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
+
+// char	*ft_extract_map(char *file, int fd)
+// {
+// 	char	buffer;
+// 	char	*string;
+// 	int		i;
+// 	int		j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (read(fd, &buffer, 1) > 0)
+// 		i++;
+// 	close(fd);
+// 	fd = open(file, O_RDONLY);
+// 	if (!(string = (char *)malloc(sizeof(char *) * (i + 1))) && fd != -1)
+// 		return (NULL);
+// 	while (read(fd, &buffer, 1) > 0)
+// 		string[j++] = buffer;
+// 	close(fd);
+// 	string[j] = '\0';
+// 	return (string);
+// }
 
 char	*ft_extract_map(char *file, int fd)
 {
@@ -33,6 +55,7 @@ char	*ft_extract_map(char *file, int fd)
 	string[j] = '\0';
 	return (string);
 }
+
 
 void		ft_dotprint(t_dot *begin_dot)
 {
@@ -79,7 +102,7 @@ void		window(char *name, t_dot *dot)
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 
 	ft_place_dots(w, dot);
-	ft_link_one(w, dot);
+	ft_link_one(w, dot, max_x);
 	ft_link_two(w, dot, max_x);
 
 	// ft_link_down_to_up_h(w, dot);

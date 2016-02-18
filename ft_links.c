@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/17 14:01:17 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 16:49:34 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void		ft_place_dots(t_win w, t_dot *dot)
 			if (dot->next && dot->x % max_x != 0 && dot->next->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
 					(y - i) * sin(30 * (PI / 180)), 16777215);
-		
 		}
 		dot->x = lroundf((POS_X) + (x));
 		dot->y = lroundf((POS_Y) + (y) * sin(30 * (PI / 180)));
@@ -61,7 +60,7 @@ void		ft_place_dots(t_win w, t_dot *dot)
 
 /*----------*/
 
-void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next)
+void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
 {
 	float		x;
 	float		y;
@@ -78,7 +77,7 @@ void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next)
 	}
 }
 
-void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next)
+void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
 {
 	float		x;
 	float		y;
@@ -102,7 +101,6 @@ void		ft_link_down_to_up_v(t_win w, t_dot *dot, t_dot *dot_next)
 	float		coef_y;
 
 	coef_y = (float)ZOOM / (-(dot_next->y - dot->y));
-	printf("%f\n", coef_y);
 	x = dot->x;
 	y = dot->y;
 	while (y > dot_next->y)
@@ -132,7 +130,7 @@ void		ft_link_up_to_down_v(t_win w, t_dot *dot, t_dot *dot_next)
 
 /*----------*/
 
-void		ft_link_one(t_win w, t_dot *dot)
+void		ft_link_one(t_win w, t_dot *dot, int max_x)
 {
 	t_dot	*dot_next;
 
@@ -141,7 +139,7 @@ void		ft_link_one(t_win w, t_dot *dot)
 	{
 		if (dot_next->z > dot->z)
 			ft_link_down_to_up_h(w, dot, dot_next);
-		if (dot_next->z < dot->z)
+		if (dot_next->z < dot->z && dot->id % max_x != max_x - 1)
 			ft_link_up_to_down_h(w, dot, dot_next);
 		dot = dot->next;
 		dot_next = dot->next;
