@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/18 18:03:52 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 18:32:18 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static int			ft_str_to_dot_helper(char *str)
 ** list, with, for each dot, X, Y, Z, COLOR.
 */
 
-t_dot				**ft_str_to_dot_noGNL(char *str, t_dot **dot, int id)
+t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
 {
 	t_coo	coo;
 	int		i;
@@ -130,7 +130,7 @@ t_dot				**ft_str_to_dot_noGNL(char *str, t_dot **dot, int id)
 }
 
 /* wGNL */
-t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id, int y)
+t_dot				**ft_str_to_dotGNL(char *str, t_dot **dot, int id, int y)
 {
 	t_coo	coo;
 	int		i;
