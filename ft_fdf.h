@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/16 21:16:41 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/18 16:32:41 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int					ft_max_x(t_dot *dot);
 int					ft_max_y(t_dot *dot);
 
 void				ft_place_dots(t_win w, t_dot *dot);
-void				ft_link_one(t_win w, t_dot *dot);
+void				ft_link_one(t_win w, t_dot *dot, int max_x);
 void				ft_link_two(t_win w, t_dot *dot, int max_x);
 
 // void				ft_link_down_to_up_h(t_win w, t_dot *dot);
