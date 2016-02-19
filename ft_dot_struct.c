@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/18 18:32:18 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/19 13:27:40 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** The ft_dotnew() function creates a new link with the dot datas.
 */
 
-static t_dot		*ft_dotnew(t_coo coo, int color, int id)
+t_dot			*ft_dotnew(t_coo coo, int color, int id)
 {
 	t_dot	*dot;
 
@@ -35,7 +35,7 @@ static t_dot		*ft_dotnew(t_coo coo, int color, int id)
 ** The ft_dotend() function push the link at the end of the chained list.
 */
 
-static void			ft_dotend(t_dot **dot, t_coo coo, int color, int id)
+void			ft_dotend(t_dot **dot, t_coo coo, int color, int id)
 {
 	t_dot	*new_dot;
 
@@ -54,7 +54,7 @@ static void			ft_dotend(t_dot **dot, t_coo coo, int color, int id)
 ** The ft_extract_color() function extract the color of the dot.
 */
 
-static int			ft_extract_color(char *str, int i)
+int				ft_extract_color(char *str, int i)
 {
 	int		j;
 	int		k;
@@ -81,7 +81,7 @@ static int			ft_extract_color(char *str, int i)
 ** The ft_str_to_dot() function is a little helper because of the norm.
 */
 
-static int			ft_str_to_dot_helper(char *str)
+int			ft_str_to_dot_helper(char *str)
 {
 	int		i;
 
@@ -100,6 +100,7 @@ static int			ft_str_to_dot_helper(char *str)
 ** The ft_str_to_dot() function extract the grid and the elems as a linked
 ** list, with, for each dot, X, Y, Z, COLOR.
 */
+			/* NO LONGER USEFULL | TO CLEAN */
 
 t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
 {
@@ -154,3 +155,4 @@ t_dot				**ft_str_to_dotGNL(char *str, t_dot **dot, int id, int y)
 	}
 	return (dot);
 }
+
