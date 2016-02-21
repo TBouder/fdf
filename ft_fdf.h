@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/21 19:46:00 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/21 20:05:17 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # include <stdio.h>//
 
-# define ZOOM 15
+# define ZOOM 2
 # define POS_X 0
 # define POS_Y (w.max_y / 2)
 
@@ -55,14 +55,10 @@ typedef struct		s_win
 	char			*name;
 }					t_win;
 
-t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id);
-t_dot				**ft_str_to_dotGNL(char *str, t_dot **dot, int id, int y); //
-t_dot				**ft_str_dot(char *str, t_dot **dot, int y, int id); //
-
 t_dot				*ft_dotnew(t_coo coo, int color, int id);
 void				ft_dotend(t_dot **dot, t_coo coo, int color, int id);
 int					ft_extract_color(char *str, int i);
-
+t_dot				*ft_dotnext(t_dot *dot, int n);
 
 int					ft_max_x(t_dot *dot);
 int					ft_max_y(t_dot *dot);

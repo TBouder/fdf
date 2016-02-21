@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/21 19:45:53 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/21 19:58:31 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,81 +78,22 @@ int				ft_extract_color(char *str, int i)
 }
 
 /*
-** The ft_str_to_dot() function is a little helper because of the norm.
+** The ft_dotnext() function jump to the n next link of the chained list dot.
 */
 
-int			ft_str_to_dot_helper(char *str)
+t_dot			*ft_dotnext(t_dot *dot, int n)
 {
 	int		i;
 
 	i = 0;
-	if (str[i] == ',')
+	if (dot == NULL)
+		return (0);
+	while (i < n)
 	{
-		while (str[i] != ' ')
-			i++;
-	}
-	else
+		dot = dot->next;
+		if (dot == NULL)
+			return (NULL);
 		i++;
-	return (i);
-}
-
-/*
-** The ft_str_to_dot() function extract the grid and the elems as a linked
-** list, with, for each dot, X, Y, Z, COLOR.
-*/
-			/* NO LONGER USEFULL | TO CLEAN */
-
-t_dot				**ft_str_to_dot(char *str, t_dot **dot, int id)
-{
-	t_coo	coo;
-	int		i;
-
-	i = 0;
-	coo.x = 0;
-	coo.y = 1;
-	while (str[i])
-	{
-		if (ft_isnumber(str[i]) || str[i] == '-')
-		{
-			coo.x++;
-			coo.z = ft_atoi_part(str, i);
-			ft_dotend(dot, coo, ft_extract_color(str, i), id++);
-			i += (ft_atoi_part(str, i) == 0) ? 1 :
-				ft_nbrlen(ft_atoi_part(str, i));
-		}
-		if (str[i] == '\n')
-		{
-			coo.x = 0;
-			coo.y++;
-		}
-		i += ft_str_to_dot_helper(&str[i]);
 	}
 	return (dot);
 }
-
-/* wGNL */
-t_dot				**ft_str_to_dotGNL(char *str, t_dot **dot, int id, int y)
-{
-	t_coo	coo;
-	int		i;
-
-	i = 0;
-	coo.x = 0;
-	coo.y = y;
-	while (str[i])
-	{
-		if (ft_isnumber(str[i]) || str[i] == '-')
-		{
-			coo.x++;
-			coo.z = ft_atoi_part(str, i);
-			ft_dotend(dot, coo, ft_extract_color(str, i), id++);
-			i += (ft_atoi_part(str, i) == 0) ? 1 :
-				ft_nbrlen(ft_atoi_part(str, i));
-		}
-		if (str[i] == '\0')
-			coo.x = 0;
-		i += ft_str_to_dot_helper(&str[i]);
-	}
-	return (dot);
-}
-
