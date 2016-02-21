@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/19 13:27:45 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/21 19:47:16 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,19 @@ int			main(int ac, char **av)
 	if (ac == 2 && fd != -1)
 	{
 		//---------------
-		int		y;
-		int		i;
-		int		id;
 		t_coo	coo;
 
-		y = 0;
-		id = 0;
 		coo.x = 0;
 		coo.y = 1;
 		while (get_next_line(fd, &s))
 		{
 			//----------A METTRE DANS UNE FONCTION A PART-----------//
+			int		y;
+			int		i;
+			int		id;
+
+			id = coo.x;
+			y = 0;
 			str = ft_strsplit(s, ' ');
 			while (str[y])
 			{

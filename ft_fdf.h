@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/19 13:21:52 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/21 19:46:00 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 
 # include <stdio.h>//
 
-# define ZOOM 1
-# define PI 3.14159265
+# define ZOOM 15
 # define POS_X 0
 # define POS_Y (w.max_y / 2)
 
