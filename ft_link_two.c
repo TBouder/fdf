@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/21 20:03:40 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 15:49:22 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		ft_link_down_to_up_v(t_win w, t_dot *dot, t_dot *dot_next)
 	float		y;
 	float		coef_y;
 
-	coef_y = (float)ZOOM / (-(dot_next->y - dot->y));
+	coef_y = (float)w.zoom / (-(dot_next->y - dot->y));
 	x = dot->x;
 	y = dot->y;
 	while (y > dot_next->y)
@@ -35,7 +35,7 @@ static void		ft_link_up_to_down_v(t_win w, t_dot *dot, t_dot *dot_next)
 	float		y;
 	float		coef_y;
 
-	coef_y = (float)ZOOM / (dot_next->y - dot->y);
+	coef_y = (float)w.zoom / (dot_next->y - dot->y);
 	x = dot->x;
 	y = dot->y;
 	while (y < dot_next->y)

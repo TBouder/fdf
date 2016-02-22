@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/21 20:05:17 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 15:48:44 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct		s_win
 	int				max_x;
 	int				max_y;
 	char			*name;
+	int				zoom;
 }					t_win;
 
 t_dot				*ft_dotnew(t_coo coo, int color, int id);
