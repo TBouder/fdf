@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 17:29:17 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 17:58:06 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ void		ft_place_dots(t_win w, t_dot *dot)
 	float		x;
 	float		y;
 	int			i;
-	int			max_x;
 
-	max_x = ft_max_x(dot);
 	while (dot)
 	{
 		i = -1;
@@ -81,11 +79,11 @@ void		ft_place_dots(t_win w, t_dot *dot)
 		y = (dot->y - dot->x) * w.zoom - (dot->z * w.zoom * 2.7);
 		while (i++ < w.zoom)
 		{
-			if (ft_dotnext(dot, max_x) && ft_dotnext(dot, max_x)->z == dot->z)
+			if (ft_dotnext(dot, w.x_max) && ft_dotnext(dot, w.x_max)->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
 					(y + i) * sin(30 * (PI / 180)), 16777215);
 
-			if (dot->next && dot->x % max_x != 0 && dot->next->z == dot->z)
+			if (dot->next && dot->x % w.x_max != 0 && dot->next->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
 					(y - i) * sin(30 * (PI / 180)), 16777215);
 		}
@@ -95,13 +93,23 @@ void		ft_place_dots(t_win w, t_dot *dot)
 	}
 }
 
-void		ft_create_fdf(t_win w, int max_x)
+void		ft_create_fdf(t_win w, int i)
 {
-	ft_restore_origin(w.dot);
-	ft_dotprint(w.dot);
+	if (i == 1)
+	{
+		// ft_dotprint(w.dot);
+		// printf("%d\n", w.x_max);
+		// printf("------------\n");
+		ft_restore_origin(w.dot);
+		// ft_dotprint(w.dot);
+		// printf("%d\n", w.x_max);
+
+		printf("\n\n\n");
+	}
+
 	ft_place_dots(w, w.dot);
-	ft_link_one(w, w.dot, max_x);
-	ft_link_two(w, w.dot, max_x);
+	ft_link_one(w, w.dot, w.x_max);
+	ft_link_two(w, w.dot, w.x_max);
 }
 
 int				ft_putkey(int keycode, t_win *w)
@@ -112,10 +120,9 @@ int				ft_putkey(int keycode, t_win *w)
 	ft_nbrendl(keycode);
 	if (keycode == 24)
 	{
-		mlx_destroy_window(w->mlx, w->window);
-		w->window = mlx_new_window(w->mlx, w->max_x, w->max_y, w->name);
-		w->zoom += 10;
-		ft_create_fdf(*w, 5);
+		mlx_clear_window(w->mlx, w->window);
+		w->zoom += 1;
+		ft_create_fdf(*w, 1);
 	}
 	return (1);
 }
@@ -123,11 +130,8 @@ int				ft_putkey(int keycode, t_win *w)
 void		window(char *name, t_dot *dot)
 {
 	t_win	w;
-	void	*params;
-	int		max_x;
 
-	params = NULL;
-	max_x = ft_max_x(dot);
+	w.x_max = ft_max_x(dot);
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.max_x = 500;
@@ -135,11 +139,7 @@ void		window(char *name, t_dot *dot)
 	w.zoom = ZOOM;
 	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
-	ft_create_fdf(w, max_x);
-
-	// ft_place_dots(w, w.dot);
-	// ft_link_one(w, w.dot, max_x);
-	// ft_link_two(w, w.dot, max_x);
+	ft_create_fdf(w, 0);
 
 
 	mlx_key_hook(w.window, ft_putkey, &w);
