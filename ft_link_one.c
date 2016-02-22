@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 20:01:41 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 18:18:06 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 18:32:24 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
 	}
 }
 
-void			ft_link_one(t_win w, t_dot *dot, int max_x)
+void			ft_link_one(t_win w, t_dot *dot)
 {
 	t_dot	*dot_next;
 
@@ -55,7 +55,7 @@ void			ft_link_one(t_win w, t_dot *dot, int max_x)
 	{
 		if (dot_next->z > dot->z)
 			ft_link_down_to_up_h(w, dot, dot_next);
-		if (dot_next->z < dot->z && dot->id % max_x != max_x - 1)
+		if (dot_next->z < dot->z && dot->id % w.x_max != w.x_max - 1)
 			ft_link_up_to_down_h(w, dot, dot_next);
 		dot = dot->next;
 		dot_next = dot->next;

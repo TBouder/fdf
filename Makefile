@@ -6,7 +6,7 @@
 #    By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 15:48:47 by tbouder           #+#    #+#              #
-#    Updated: 2016/02/21 20:04:03 by Tbouder          ###   ########.fr        #
+#    Updated: 2016/02/22 18:48:59 by Tbouder          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,9 @@ NAME 		= 	fdf
 CC			= 	gcc
 CFLAGS		= 	-Wall -Werror -Wextra -g
 
-SRC 		= 	main.c ft_dot_struct.c ft_max_xy.c ft_link_one.c ft_link_two.c
+SRC 		= 	main.c ft_dot_struct.c ft_max_xy.c \
+				ft_link_one.c ft_link_two.c ft_link_roots.c\
+				ft_tools.c
 
 LIB			=	libft/libft.a -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 

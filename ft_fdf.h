@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 17:32:53 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 18:50:27 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,37 @@ typedef struct		s_win
 	t_dot			*dot;
 }					t_win;
 
+/*
+** In ft_dot_struct
+*/
+
 t_dot				*ft_dotnew(t_coo coo, int color, int id);
 void				ft_dotend(t_dot **dot, t_coo coo, int color, int id);
 int					ft_extract_color(char *str, int i);
 t_dot				*ft_dotnext(t_dot *dot, int n);
 
+/*
+** In ft_max_xy
+*/
+
 int					ft_max_x(t_dot *dot);
 int					ft_max_y(t_dot *dot);
 
-void				ft_place_dots(t_win w, t_dot *dot);
-void				ft_link_one(t_win w, t_dot *dot, int max_x);
-void				ft_link_two(t_win w, t_dot *dot, int max_x);
+/*
+** In ft_link_[roots, one, two]
+*/
+
+void				ft_create_fdf(t_win w, int i);
+void				ft_link_one(t_win w, t_dot *dot);
+void				ft_link_two(t_win w, t_dot *dot);
+
+/*
+** In ft_tools
+*/
+
+void				ft_extract_map(char **str, char *s, t_dot **dot, t_coo *coo);
+int					ft_nbrounded_down(float nb);
+void				ft_save_origin(t_dot *dot);
+void				ft_restore_origin(t_dot *dot);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 18:29:04 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 18:50:42 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,40 +46,18 @@ static void		ft_link_up_to_down_v(t_win w, t_dot *dot, t_dot *dot_next)
 	}
 }
 
-int	test(t_dot *dot)
-{
-	int		i = 0;
-	while (dot->next)
-	{
-		i++;
-		dot = dot->next;
-	}
-	return (i);
-}
-
-void			ft_link_two(t_win w, t_dot *dot, int max_x)
+void			ft_link_two(t_win w, t_dot *dot)
 {
 	t_dot	*dot_next;
 
-	dot_next = ft_dotnext(dot, max_x);
-	printf("%d\n", max_x);
-		printf("%d\n", test(dot));
-		printf("%d\n", test(dot_next));
-
+	dot_next = ft_dotnext(dot, w.x_max);
 	while (dot_next)
 	{
-		// printf("x : %d | y : %d | z : %d | id : %d\n", dot_next->x, dot_next->y, dot_next->z, dot_next->id);
-
 		if (dot_next->z > dot->z)
 			ft_link_down_to_up_v(w, dot, dot_next);
-		printf("%d\n", dot->x);
-		if (dot_next->z < dot->z && dot->x % max_x + 1 != max_x)// && dot_next->x - w.zoom == dot->x)
-		{
+		if (dot_next->z < dot->z)
 			ft_link_up_to_down_v(w, dot, dot_next);
-		}
 		dot = dot->next;
-		dot_next = ft_dotnext(dot, max_x);
+		dot_next = ft_dotnext(dot, w.x_max);
 	}
-		printf("\n\n\n");
-
 }
