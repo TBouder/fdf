@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 21:12:24 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 21:43:55 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ void		window(char *name, t_dot *dot)
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.zoom = ZOOM;
-	w.max_x = ((w.x_max * w.zoom * 10) > 1900) ? 1900 : w.x_max * w.zoom * 10;
-	w.max_y = ((y * w.zoom * 10) > 1000) ? 1000 : w.x_max * w.zoom * 10;
+	// w.max_x = ((w.x_max * w.zoom * 10) > 1900) ? 1900 : w.x_max * w.zoom * 10;
+	// w.max_y = ((y * w.zoom * 10) > 1000) ? 1000 : w.x_max * w.zoom * 10;
+	w.max_x = 500;
+	w.max_y = 500;
 	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 	ft_create_fdf(w, 0);
