@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 17:58:06 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 18:17:43 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void		ft_place_dots(t_win w, t_dot *dot)
 					(y - i) * sin(30 * (PI / 180)), 16777215);
 		}
 		dot->x = lroundf((POS_X) + (x));
-		dot->y = lroundf((POS_Y) + (y) * sin(30 * (PI / 180)));
+		dot->y = lroundf((POS_Y) + (y) * ft_sin(30));
 		dot = dot->next;
 	}
 }
@@ -96,18 +96,9 @@ void		ft_place_dots(t_win w, t_dot *dot)
 void		ft_create_fdf(t_win w, int i)
 {
 	if (i == 1)
-	{
-		// ft_dotprint(w.dot);
-		// printf("%d\n", w.x_max);
-		// printf("------------\n");
 		ft_restore_origin(w.dot);
-		// ft_dotprint(w.dot);
-		// printf("%d\n", w.x_max);
-
-		printf("\n\n\n");
-	}
-
 	ft_place_dots(w, w.dot);
+	ft_dotprint(w.dot);
 	ft_link_one(w, w.dot, w.x_max);
 	ft_link_two(w, w.dot, w.x_max);
 }
