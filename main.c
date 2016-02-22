@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 16:58:48 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 17:29:17 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,29 @@ int			ft_nbrounded_down(float nb)
 	return (i - 1);
 }
 
-int				ft_putkey(int keycode, void *params)
-{
+/*-----------*/
 
-	printf("%d\n", params);
-	ft_putstr("key event ");
-	ft_nbrendl(keycode);
-	return (1);
+void		ft_save_origin(t_dot *dot)
+{
+	while (dot->next)
+	{
+		dot->o_x = dot->x;
+		dot->o_y = dot->y;
+		dot->o_z = dot->z;
+		dot = dot->next;
+	}	
 }
 
-/*-----------*/
+void		ft_restore_origin(t_dot *dot)
+{
+	while (dot->next)
+	{
+		dot->x = dot->o_x;
+		dot->y = dot->o_y;
+		dot->z = dot->o_z;
+		dot = dot->next;
+	}	
+}
 
 void		ft_place_dots(t_win w, t_dot *dot)
 {
@@ -82,6 +95,31 @@ void		ft_place_dots(t_win w, t_dot *dot)
 	}
 }
 
+void		ft_create_fdf(t_win w, int max_x)
+{
+	ft_restore_origin(w.dot);
+	ft_dotprint(w.dot);
+	ft_place_dots(w, w.dot);
+	ft_link_one(w, w.dot, max_x);
+	ft_link_two(w, w.dot, max_x);
+}
+
+int				ft_putkey(int keycode, t_win *w)
+{
+
+	// printf("%d\n", w->zoom);
+	ft_putstr("key event ");
+	ft_nbrendl(keycode);
+	if (keycode == 24)
+	{
+		mlx_destroy_window(w->mlx, w->window);
+		w->window = mlx_new_window(w->mlx, w->max_x, w->max_y, w->name);
+		w->zoom += 10;
+		ft_create_fdf(*w, 5);
+	}
+	return (1);
+}
+
 void		window(char *name, t_dot *dot)
 {
 	t_win	w;
@@ -95,27 +133,16 @@ void		window(char *name, t_dot *dot)
 	w.max_x = 500;
 	w.max_y = 500;
 	w.zoom = ZOOM;
+	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
+	ft_create_fdf(w, max_x);
 
-	ft_place_dots(w, dot);
-	ft_link_one(w, dot, max_x);
-	ft_link_two(w, dot, max_x);
-	
+	// ft_place_dots(w, w.dot);
+	// ft_link_one(w, w.dot, max_x);
+	// ft_link_two(w, w.dot, max_x);
 
 
-	printf("%d\n", mlx_key_hook(w.window, ft_putkey, &w));
-	// if (mlx_key_hook(w.window, ft_putkey, 0) == 1)
-	// {
-	// 	printf("coucou\n");
-	// 	mlx_clear_window(w.mlx, w.window);
-	// 	w.zoom = ZOOM + 5;
-	// 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
-	// 	printf("%d\n", w.zoom);
-	// 	ft_place_dots(w, dot);
-	// 	ft_link_one(w, dot, max_x);
-	// 	ft_link_two(w, dot, max_x);
-	// }
-
+	mlx_key_hook(w.window, ft_putkey, &w);
 	mlx_loop(w.mlx);
 }
 
@@ -159,9 +186,11 @@ int			main(int ac, char **av)
 		coo.y = 1;
 		while (get_next_line(fd, &s))
 			ft_extract_map(str, s, &dot, &coo);
-		ft_dotprint(dot); //
 	}
 	if (dot != NULL)
+	{
+		ft_save_origin(dot);
 		window(av[1], dot);
+	}
 	return (0);
 }
