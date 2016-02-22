@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 15:49:22 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 17:59:09 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void		ft_link_down_to_up_v(t_win w, t_dot *dot, t_dot *dot_next)
 	coef_y = (float)w.zoom / (-(dot_next->y - dot->y));
 	x = dot->x;
 	y = dot->y;
+	printf("CALC : %d\n", dot_next->y);
 	while (y > dot_next->y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 16669806);

@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 17:25:44 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 17:32:53 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # include <stdio.h>//
 
-# define ZOOM 14
+# define ZOOM 5
 # define POS_X 0
 # define POS_Y (w.max_y / 2)
 
@@ -57,6 +57,7 @@ typedef struct		s_win
 	int				max_x;
 	int				max_y;
 	int				zoom;
+	int				x_max;
 	t_dot			*dot;
 }					t_win;
 
