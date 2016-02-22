@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 16:24:55 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 16:58:48 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ int			ft_nbrounded_down(float nb)
 	return (i - 1);
 }
 
-int				ft_putkey(int keycode, void *w)
+int				ft_putkey(int keycode, void *params)
 {
+
+	printf("%d\n", params);
 	ft_putstr("key event ");
 	ft_nbrendl(keycode);
-	if (keycode == 24)
-		return (0);
-	(void) w;
 	return (1);
 }
 
@@ -86,8 +85,10 @@ void		ft_place_dots(t_win w, t_dot *dot)
 void		window(char *name, t_dot *dot)
 {
 	t_win	w;
+	void	*params;
 	int		max_x;
 
+	params = NULL;
 	max_x = ft_max_x(dot);
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
@@ -96,12 +97,13 @@ void		window(char *name, t_dot *dot)
 	w.zoom = ZOOM;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 
-	printf("%d\n", w.zoom);
 	ft_place_dots(w, dot);
 	ft_link_one(w, dot, max_x);
 	ft_link_two(w, dot, max_x);
 	
-	// printf("%d\n", mlx_key_hook(w.window, ft_putkey, (void *) w));
+
+
+	printf("%d\n", mlx_key_hook(w.window, ft_putkey, &w));
 	// if (mlx_key_hook(w.window, ft_putkey, 0) == 1)
 	// {
 	// 	printf("coucou\n");
