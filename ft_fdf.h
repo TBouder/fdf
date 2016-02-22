@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 16:16:38 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 17:25:44 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # include <stdio.h>//
 
-# define ZOOM 2
+# define ZOOM 14
 # define POS_X 0
 # define POS_Y (w.max_y / 2)
 
@@ -39,8 +39,11 @@ typedef struct		s_coo
 typedef struct		s_dot
 {
 	int				x;
+	int				o_x;
 	int				y;
+	int				o_y;
 	int				z;
+	int				o_z;
 	int				color;
 	int				id;
 	struct s_dot	*next;
@@ -50,10 +53,11 @@ typedef struct		s_win
 {
 	void			*mlx;
 	void			*window;
+	char			*name;
 	int				max_x;
 	int				max_y;
-	char			*name;
 	int				zoom;
+	t_dot			*dot;
 }					t_win;
 
 t_dot				*ft_dotnew(t_coo coo, int color, int id);
