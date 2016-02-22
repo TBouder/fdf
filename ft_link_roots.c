@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/22 18:47:05 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 21:36:46 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 /*
 ** The ft_place_dots() function places the dots on the map, with links between
-** same z. 
+** same z.
+** ft_sin(X) if for the orientation from down to top.
 */
 
 static void		ft_place_dots(t_win w, t_dot *dot)
@@ -31,12 +32,14 @@ static void		ft_place_dots(t_win w, t_dot *dot)
 		while (i++ < w.zoom)
 		{
 			if (ft_dotnext(dot, w.x_max) && ft_dotnext(dot, w.x_max)->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
-					(y + i) * sin(30 * (PI / 180)), 16777215);
+				mlx_pixel_put(w.mlx, w.window,
+					(POS_X) + (x + i),
+					(POS_Y) + (y + i) * ft_sin(30), 16777215);
 
 			if (dot->next && dot->x % w.x_max != 0 && dot->next->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
-					(y - i) * sin(30 * (PI / 180)), 16777215);
+				mlx_pixel_put(w.mlx, w.window,
+					(POS_X) + (x + i),
+					(POS_Y) + (y - i) * ft_sin(30), 16777215);
 		}
 		dot->x = lroundf((POS_X) + (x));
 		dot->y = lroundf((POS_Y) + (y) * ft_sin(30));
