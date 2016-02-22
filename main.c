@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/21 20:04:48 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/22 15:58:53 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ int			ft_nbrounded_down(float nb)
 	return (i - 1);
 }
 
+int				ft_putkey(int keycode, void *param)
+{
+	ft_putstr("key event ");
+	ft_nbrendl(keycode);
+	if (keycode == 24)
+		return (0);
+	(void) param;
+	return (1);
+}
+
 /*-----------*/
 
 void		ft_place_dots(t_win w, t_dot *dot)
@@ -55,9 +65,9 @@ void		ft_place_dots(t_win w, t_dot *dot)
 	while (dot)
 	{
 		i = -1;
-		x = (dot->x + dot->y) * ZOOM;
-		y = (dot->y - dot->x) * ZOOM - (dot->z * ZOOM * 2.7);
-		while (i++ < ZOOM)
+		x = (dot->x + dot->y) * w.zoom;
+		y = (dot->y - dot->x) * w.zoom - (dot->z * w.zoom * 2.7);
+		while (i++ < w.zoom)
 		{
 			if (ft_dotnext(dot, max_x) && ft_dotnext(dot, max_x)->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window, (POS_X) + (x + i), (POS_Y) +
@@ -81,13 +91,28 @@ void		window(char *name, t_dot *dot)
 	max_x = ft_max_x(dot);
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
-	w.max_x = 1900;
-	w.max_y = 1000;
+	w.max_x = 500;
+	w.max_y = 500;
+	w.zoom = ZOOM;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 
+	printf("%d\n", w.zoom);
 	ft_place_dots(w, dot);
 	ft_link_one(w, dot, max_x);
 	ft_link_two(w, dot, max_x);
+	
+	if (mlx_key_hook(w.window, ft_putkey, 0) == 1)
+	{
+		printf("coucou\n");
+		mlx_clear_window(w.mlx, w.window);
+		w.zoom = ZOOM + 5;
+		w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
+		printf("%d\n", w.zoom);
+		ft_place_dots(w, dot);
+		ft_link_one(w, dot, max_x);
+		ft_link_two(w, dot, max_x);
+	}
+
 	mlx_loop(w.mlx);
 }
 
