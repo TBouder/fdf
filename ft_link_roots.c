@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/23 12:53:58 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/24 13:29:20 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** same z.
 ** ft_sin(X) if for the orientation from down to top.
 */
+
 
 static void		ft_place_dots(t_win w, t_dot *dot)
 {
@@ -47,6 +48,36 @@ static void		ft_place_dots(t_win w, t_dot *dot)
 	}
 }
 
+static void		ft_place_dots_v02(t_win w, t_dot *dot)
+{
+	float		x;
+	float		y;
+	int			i;
+
+	while (dot)
+	{
+		i = -1;
+		x = (dot->y - dot->x) * w.zoom;
+		y = (dot->x + dot->y) * w.zoom - (dot->z * w.zoom * 2.7);
+		while (i++ < w.zoom)
+		{
+			if (ft_dotnext(dot, w.x_max) && ft_dotnext(dot, w.x_max)->z == dot->z)
+				mlx_pixel_put(w.mlx, w.window,
+					(POS_X + 500) + (x + i),
+					(POS_Y / 2) + (y + i) * ft_sin(30), 16777215);
+
+			if (dot->next && dot->x % w.x_max != 0 && dot->next->z == dot->z)
+				mlx_pixel_put(w.mlx, w.window,
+					(POS_X + 500) + (x - i),
+					(POS_Y / 2) + (y + i) * ft_sin(30), 16777215);
+		}
+		dot->x = lroundf((POS_X + 500) + (x));
+		dot->y = lroundf((POS_Y / 2) + (y) * ft_sin(30));
+		dot = dot->next;
+	}
+}
+
+
 /*
 ** The ft_create_fdf() function is a launcher for all the fdf creations
 ** fonctions.
@@ -57,6 +88,8 @@ void			ft_create_fdf(t_win w, int i)
 	if (i == 1)
 		ft_restore_origin(w.dot);
 	ft_place_dots(w, w.dot);
+	// ft_place_dots_v02(w, w.dot);
+	// ft_link_one_v02(w, w.dot);
 	ft_link_one(w, w.dot);
 	ft_link_two(w, w.dot);
 }
