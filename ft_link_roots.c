@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/24 13:29:20 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/24 13:58:18 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 ** same z.
 ** ft_sin(X) if for the orientation from down to top.
 */
-
 
 static void		ft_place_dots(t_win w, t_dot *dot)
 {
@@ -48,6 +47,7 @@ static void		ft_place_dots(t_win w, t_dot *dot)
 	}
 }
 
+/*
 static void		ft_place_dots_v02(t_win w, t_dot *dot)
 {
 	float		x;
@@ -76,7 +76,7 @@ static void		ft_place_dots_v02(t_win w, t_dot *dot)
 		dot = dot->next;
 	}
 }
-
+*/
 
 /*
 ** The ft_create_fdf() function is a launcher for all the fdf creations
