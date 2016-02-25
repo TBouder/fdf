@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/24 13:07:31 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 11:20:12 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,18 @@ int				ft_putkey(int keycode, t_win *w)
 
 	ft_putstr("key event ");
 	ft_nbrendl(keycode);
-	if (keycode == 24 || keycode == 69)
+	if (keycode == 24 || keycode == 69 || keycode == 27 || keycode == 78
+		|| keycode == 123 || keycode == 0 || keycode == 124 || keycode == 2
+		|| keycode == 125 || keycode == 1 || keycode == 126 || keycode == 13)
 	{
 		mlx_clear_window(w->mlx, w->window);
-		w->zoom += 1;
-		ft_create_fdf(*w, 1);
-	}
-	if (keycode == 27 || keycode == 78)
-	{
-		mlx_clear_window(w->mlx, w->window);
-		w->zoom -= 1;
+		keycode == 24 || keycode == 69 ? w->zoom += 1 : 0;
+		keycode == 27 || keycode == 78 ? w->zoom -= 1 : 0;
+		keycode == 123 || keycode == 0 ? w->obj_x -= 10 : 0;
+		keycode == 124 || keycode == 2 ? w->obj_x += 10 : 0;
+		keycode == 125 || keycode == 1 ? w->obj_y += 10 : 0;
+		keycode == 126 || keycode == 13 ? w->obj_y -= 10 : 0;
+
 		ft_create_fdf(*w, 1);
 	}
 	if (keycode == 53)
@@ -63,18 +65,18 @@ void		window(char *name, t_dot *dot)
 	t_win	w;
 	int		y;
 
-	w.x_max = ft_max_x(dot);
+	w.x = ft_max_x(dot);
 	y = ft_max_y(dot);
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.zoom = ZOOM;
 	w.max_x = 1000;
 	w.max_y = 1000;
+	w.obj_x = 0;
+	w.obj_y = 500;
 	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 	ft_create_fdf(w, 0);
-
-
 	mlx_key_hook(w.window, ft_putkey, &w);
 	mlx_loop(w.mlx);
 }
