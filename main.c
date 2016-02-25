@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 12:26:25 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 13:24:32 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int				ft_putkey(int keycode, t_win *w)
 		keycode == 125 || keycode == 1 ? w->obj_y += 10 : 0;
 		keycode == 126 || keycode == 13 ? w->obj_y -= 10 : 0;
 
-		keycode == 15 ? w->zoom_z += ZOOM : 0;
-		keycode == 3 ? w->zoom_z -= ZOOM : 0;
+		keycode == 15 ? w->zoom_z += 1 : 0;
+		keycode == 3 ? w->zoom_z -= 1 : 0;
 
 		ft_create_fdf(*w, 1);
 	}
@@ -83,7 +83,7 @@ void		window(char *name, t_dot *dot)
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.zoom = ZOOM;
-	w.zoom_z = ZOOM;
+	w.zoom_z = 1;
 	w.max_x = 1000;
 	w.max_y = 1000;
 	w.obj_x = 0;
