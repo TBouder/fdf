@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 11:20:05 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 11:52:28 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_place_dots(t_win w, t_dot *dot)
 	{
 		i = -1;
 		x = (dot->x + dot->y) * w.zoom;
-		y = (dot->y - dot->x) * w.zoom - (dot->z * w.zoom * 2.7);
+		y = (dot->y - dot->x) * w.zoom - (dot->z * w.zoom_z * 2.7);
 		while (i++ < w.zoom)
 		{
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
@@ -58,7 +58,7 @@ static void		ft_place_dots_v02(t_win w, t_dot *dot)
 	{
 		i = -1;
 		x = (dot->y - dot->x) * w.zoom;
-		y = (dot->x + dot->y) * w.zoom - (dot->z * w.zoom * 2.7);
+		y = (dot->x + dot->y) * w.zoom - (dot->z * w.zoom_z * 2.7);
 		while (i++ < w.zoom)
 		{
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)

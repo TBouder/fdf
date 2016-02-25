@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 11:20:12 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 11:50:15 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,20 @@ int				ft_putkey(int keycode, t_win *w)
 	ft_nbrendl(keycode);
 	if (keycode == 24 || keycode == 69 || keycode == 27 || keycode == 78
 		|| keycode == 123 || keycode == 0 || keycode == 124 || keycode == 2
-		|| keycode == 125 || keycode == 1 || keycode == 126 || keycode == 13)
+		|| keycode == 125 || keycode == 1 || keycode == 126 || keycode == 13
+		|| keycode == 15 || keycode == 3)
 	{
 		mlx_clear_window(w->mlx, w->window);
 		keycode == 24 || keycode == 69 ? w->zoom += 1 : 0;
 		keycode == 27 || keycode == 78 ? w->zoom -= 1 : 0;
+
 		keycode == 123 || keycode == 0 ? w->obj_x -= 10 : 0;
 		keycode == 124 || keycode == 2 ? w->obj_x += 10 : 0;
 		keycode == 125 || keycode == 1 ? w->obj_y += 10 : 0;
 		keycode == 126 || keycode == 13 ? w->obj_y -= 10 : 0;
+
+		keycode == 15 ? w->zoom_z += ZOOM : 0;
+		keycode == 3 ? w->zoom_z -= ZOOM : 0;
 
 		ft_create_fdf(*w, 1);
 	}
@@ -70,6 +75,7 @@ void		window(char *name, t_dot *dot)
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.zoom = ZOOM;
+	w.zoom_z = ZOOM;
 	w.max_x = 1000;
 	w.max_y = 1000;
 	w.obj_x = 0;
