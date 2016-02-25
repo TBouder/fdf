@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 11:19:50 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 11:37:42 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_win
 	int				obj_x;
 	int				obj_y;
 	int				zoom;
+	int				zoom_z;
 	int				x;
 	t_dot			*dot;
 }					t_win;
