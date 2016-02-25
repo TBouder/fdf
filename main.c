@@ -6,11 +6,19 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 11:50:15 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 12:26:25 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
+
+/*
+** BONUS : 
+** Deplacement de l'object (gauche, droite, haut, bas)
+** Zoom/Dezoom de l'objet
+** Zoom/Dezoom de la hauteur individuellement
+** Affichage d'informations relatives a l'objet en haut a gauche
+*/
 
 void		ft_dotprint(t_dot *begin_dot) //TO DELETE
 {
