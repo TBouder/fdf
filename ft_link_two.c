@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/24 13:23:16 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 11:20:46 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			ft_link_two(t_win w, t_dot *dot)
 {
 	t_dot	*dot_next;
 
-	dot_next = ft_dotnext(dot, w.x_max);
+	dot_next = ft_dotnext(dot, w.x);
 	while (dot_next)
 	{
 		if (dot_next->z > dot->z)
@@ -58,6 +58,6 @@ void			ft_link_two(t_win w, t_dot *dot)
 		if (dot_next->z < dot->z)
 			ft_link_up_to_down_v(w, dot, dot_next);
 		dot = dot->next;
-		dot_next = ft_dotnext(dot, w.x_max);
+		dot_next = ft_dotnext(dot, w.x);
 	}
 }
