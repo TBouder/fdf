@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 12:27:12 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/02/25 13:26:47 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_place_dots(t_win w, t_dot *dot)
 	{
 		i = -1;
 		x = (dot->x + dot->y) * w.zoom;
-		y = (dot->y - dot->x) * w.zoom - (dot->z * w.zoom_z * 2.7);
+		y = (dot->y - dot->x) * w.zoom - (dot->z * w.zoom * 2.7 * w.zoom_z);
 		while (i++ < w.zoom)
 		{
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
@@ -84,8 +84,6 @@ static void		ft_place_dots_v02(t_win w, t_dot *dot)
 
 void			ft_print_infos(t_win w)
 {
-	int		z;
-	z = w.zoom_z / ZOOM;
 	mlx_string_put(w.mlx, w.window, 10, 10, 0xFFFFFF, "Window size : ");
 	mlx_string_put(w.mlx, w.window, 150, 10, 0xFFFFFF, ft_itoa(w.max_x));
 	mlx_string_put(w.mlx, w.window, 200, 10, 0xFFFFFF, "X");
@@ -97,7 +95,7 @@ void			ft_print_infos(t_win w)
 	mlx_string_put(w.mlx, w.window, 10, 50, 0xFFFFFF, "Zoom        : ");
 	mlx_string_put(w.mlx, w.window, 150, 50, 0xFFFFFF, ft_itoa(w.zoom));
 	mlx_string_put(w.mlx, w.window, 10, 70, 0xFFFFFF, "Z Factor    : ");
-	mlx_string_put(w.mlx, w.window, 150, 70, 0xFFFFFF, ft_itoa(z));
+	mlx_string_put(w.mlx, w.window, 150, 70, 0xFFFFFF, ft_itoa(w.zoom_z));
 }
 
 /*
@@ -113,6 +111,6 @@ void			ft_create_fdf(t_win w, int i)
 	ft_place_dots(w, w.dot);
 	// ft_place_dots_v02(w, w.dot);
 	// ft_link_one_v02(w, w.dot);
-	// ft_link_one(w, w.dot);
+	ft_link_one(w, w.dot);
 	ft_link_two(w, w.dot);
 }
