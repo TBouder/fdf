@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_link_one.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 20:01:41 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 12:10:26 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/03 16:00:55 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
 	coef_y = (float)w.zoom / (-(dot_next->y - dot->y));
 	x = dot->x;
 	y = dot->y;
-	while (coef_y > 0 && y > dot_next->y)
+	while (coef_y > 0 && y > dot_next->y && dot->o_y == dot_next->o_y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
 		x += coef_y;
 		y -= 1;
 	}
-	while (coef_y < 0 && y < dot_next->y)
+	while (coef_y < 0 && y < dot_next->y && dot->o_y == dot_next->o_y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
 		x -= coef_y;
