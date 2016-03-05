@@ -57,9 +57,7 @@ void			ft_dotend(t_dot **dot, t_coo coo, int color, int id)
 int				ft_extract_color(char *str, int i)
 {
 	int		j;
-	int		k;
 
-	k = 0;
 	if (ft_atoi_part(str, i) == 0)
 		i++;
 	else
