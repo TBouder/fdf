@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 13:36:39 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 22:43:18 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				ft_extract_color(char *str, int i)
 			j++;
 		if (str[j] == 'x')
 			j++;
+		ft_putendl(&str[j]);
 		return (ft_atoi_hexa(&str[j]));
 	}
 	else

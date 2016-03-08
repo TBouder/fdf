@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 20:14:54 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 22:33:07 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,14 @@
 ** Zoom/Dezoom de la hauteur individuellement
 ** Affichage d'informations relatives a l'objet en haut a gauche
 ** Rotation : +90º, +180º, +270º
+** Menu avec H
 */
 
-void		ft_dotprint(t_dot *begin_dot) //TO DELETE
-{
-	while (begin_dot->next)
-	{
-		ft_putstr("Dot n_");
-		ft_putnbr(begin_dot->id);
-		ft_putstr(" : x = ");
-		ft_putnbr(begin_dot->x);
-		ft_putstr(" | y = ");
-		ft_putnbr(begin_dot->y);
-		ft_putstr(" | z = ");
-		ft_putnbr(begin_dot->z);
-		ft_putstr(" | color = ");
-		ft_nbrendl(begin_dot->color);
-		begin_dot = begin_dot->next;
-	}
-}
-
-/*-----------*/
-
-void			ft_exit(t_win *w)
-{
-	mlx_destroy_window(w->mlx, w->window);
-	free(w->mlx);
-	free(w->dot);
-	exit(0);
-}
-
-int				ft_putkey(int key, t_win *w)
+static int		ft_putkey(int key, t_win *w)
 {
 	if ((key >= 18 && key <= 21) || (key >= 123 && key <= 126) || (key >= 0 &&
 		key <= 3) || key == 13 || key == 15 || key == 24 || key == 69
-		|| key == 27 || key == 78)
+		|| key == 27 || key == 78 || key == 12)
 	{
 		mlx_clear_window(w->mlx, w->window);
 		key == 24 || key == 69 ? w->zoom += 1 : 0;
@@ -70,12 +43,12 @@ int				ft_putkey(int key, t_win *w)
 		key == 21 ? w->rotation = 4 : 0;
 		ft_create_fdf(*w, 1);
 	}
-	if (key == 53)
-		ft_exit(w);
+	(key == 53) ? ft_exit(w) : 0;
+	(key == 4) ? ft_help(w) : 0;
 	return (1);
 }
 
-void		window(char *name, t_dot **dot)
+static void		window(char *name, t_dot **dot)
 {
 	t_win	w;
 
@@ -100,7 +73,7 @@ void		window(char *name, t_dot **dot)
 	mlx_loop(w.mlx);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	int		fd;
 	char	*s;

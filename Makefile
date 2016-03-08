@@ -6,7 +6,7 @@
 #    By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 15:48:47 by tbouder           #+#    #+#              #
-#    Updated: 2016/03/08 20:08:54 by Tbouder          ###   ########.fr        #
+#    Updated: 2016/03/08 22:28:19 by Tbouder          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC 	= 	main.c ft_dot_struct.c ft_max_xy.c\
 			rot_90d/ft_link_one_2.c rot_90d/ft_link_two_2.c \
 			rot_180d/ft_link_one_3.c rot_180d/ft_link_two_3.c \
 			rot_270d/ft_link_one_4.c rot_270d/ft_link_two_4.c \
-			ft_tools.c
+			ft_tools.c ft_help.c
 
 LIB		=	-Llibft -lft -Lminilibx_macos -lmlx -framework OpenGL \
 			-framework AppKit
@@ -32,7 +32,7 @@ OBJ		=	main.o ft_dot_struct.o ft_max_xy.o\
 			ft_link_one_2.o ft_link_two_2.o \
 			ft_link_one_3.o ft_link_two_3.o \
 			ft_link_one_4.o ft_link_two_4.o \
-			ft_tools.o
+			ft_tools.o ft_help.o
 
 HEADER 	=	libft/libft.h
 

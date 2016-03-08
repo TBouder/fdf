@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:36:43 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 22:37:02 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void			ft_print_infos(t_win w)
 ** fonctions.
 */
 
+void			ft_create_fdf_helper(t_win w)
+{
+	ft_place_dots_4(w, w.dot);
+	ft_link_one_4(w, w.dot);
+	ft_link_two_4(w, w.dot);
+}
+
 void			ft_create_fdf(t_win w, int i)
 {
 	i == 1 ? ft_restore_origin(w.dot) : 0;
@@ -60,9 +67,5 @@ void			ft_create_fdf(t_win w, int i)
 		ft_link_two_3(w, w.dot);
 	}
 	else if (w.rotation == 4)
-	{
-		ft_place_dots_4(w, w.dot);
-		ft_link_one_4(w, w.dot);
-		ft_link_two_4(w, w.dot);
-	}
+		ft_create_fdf_helper(w);
 }
