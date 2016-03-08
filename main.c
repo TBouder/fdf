@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 16:51:25 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 18:49:55 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int				ft_putkey(int key, t_win *w)
 {
 	ft_putstr("key event ");
 	ft_nbrendl(key);
-	if ((key >= 18 && key <= 21) || (key >= 123 && key <= 126)
-	|| (key >= 0 && key <= 3) || key == 13 || key == 15 || key == 24
-	|| key == 69 || key == 27 || key == 78)
+	if ((key >= 18 && key <= 21) || (key >= 123 && key <= 126) || (key >= 0 &&
+		key <= 3) || key == 13 || key == 15 || key == 24 || key == 69
+		|| key == 27 || key == 78)
 	{
 		mlx_clear_window(w->mlx, w->window);
 		key == 24 || key == 69 ? w->zoom += 1 : 0;
@@ -85,7 +85,7 @@ void		window(char *name, t_dot *dot)
 	w.max_y = 1000;
 	w.obj_x = 0;
 	w.obj_y = 500;
-	w.rotation = 1;
+	w.rotation = 4;
 	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 	ft_create_fdf(w, 0);

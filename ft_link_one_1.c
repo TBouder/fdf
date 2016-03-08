@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_link_one.c                                      :+:      :+:    :+:   */
+/*   ft_link_one_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 20:01:41 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 15:24:38 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 18:15:17 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
 	}
 }
 
-void			ft_link_one(t_win w, t_dot *dot)
+void			ft_link_one_1(t_win w, t_dot *dot)
 {
 	t_dot	*dot_next;
 
