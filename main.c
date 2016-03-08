@@ -75,10 +75,8 @@ int				ft_putkey(int key, t_win *w)
 void		window(char *name, t_dot *dot)
 {
 	t_win	w;
-	int		y;
 
 	w.x = ft_max_x(dot);
-	y = ft_max_y(dot);
 	w.mlx = mlx_init(); //PROTEGER
 	w.name = name;
 	w.zoom = ZOOM;
