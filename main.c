@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:37:26 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 19:53:20 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 /*
 ** BONUS :
-** Deplacement de l'object (gauche, droite, haut, bas)
-** Zoom/Dezoom de l'objet
+** Deplacement de l'object (gauche, droite, haut, bas)	| MULTI-TOUCHE
+** Zoom/Dezoom de l'objet								| MULTI-TOUCHE
 ** Zoom/Dezoom de la hauteur individuellement
 ** Affichage d'informations relatives a l'objet en haut a gauche
+** Rotation : +90º, +180º, +270º
 */
 
 void		ft_dotprint(t_dot *begin_dot) //TO DELETE
@@ -40,10 +41,15 @@ void		ft_dotprint(t_dot *begin_dot) //TO DELETE
 
 /*-----------*/
 
+void			ft_exit(t_win *w)
+{
+	mlx_destroy_window(w->mlx, w->window);
+	free(w->mlx);
+	exit(0);
+}
+
 int				ft_putkey(int key, t_win *w)
 {
-	ft_putstr("key event ");
-	ft_nbrendl(key);
 	if ((key >= 18 && key <= 21) || (key >= 123 && key <= 126) || (key >= 0 &&
 		key <= 3) || key == 13 || key == 15 || key == 24 || key == 69
 		|| key == 27 || key == 78)
@@ -64,11 +70,7 @@ int				ft_putkey(int key, t_win *w)
 		ft_create_fdf(*w, 1);
 	}
 	if (key == 53)
-	{
-		mlx_destroy_window(w->mlx, w->window);
-		free(w->mlx);
-		exit(0);
-	}
+		ft_exit(w);
 	return (1);
 }
 
@@ -77,7 +79,8 @@ void		window(char *name, t_dot *dot)
 	t_win	w;
 
 	w.x = ft_max_x(dot);
-	w.mlx = mlx_init(); //PROTEGER
+	if ((w.mlx = mlx_init()) == NULL)
+		ft_exit(&w);
 	w.name = name;
 	w.zoom = ZOOM;
 	w.zoom_z = 1;
@@ -111,9 +114,9 @@ int			main(int ac, char **av)
 		while (get_next_line(fd, &s))
 			ft_extract_map(str, s, &dot, &coo);
 		ft_save_origin(dot);
+		ft_strdel(&s);
+		ft_strdel(str);
 		window(av[1], dot);
 	}
-	ft_strdel(&s);
-	ft_strdel(str);
 	return (0);
 }

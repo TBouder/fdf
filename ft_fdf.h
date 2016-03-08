@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:38:50 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 19:59:27 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
-# include <errno.h>
-# include <string.h>
 # include <math.h>
-
-# include <stdio.h>//
 
 # define ZOOM 15
 
