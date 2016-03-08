@@ -6,7 +6,7 @@
 #    By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 15:48:47 by tbouder           #+#    #+#              #
-#    Updated: 2016/03/08 19:12:19 by Tbouder          ###   ########.fr        #
+#    Updated: 2016/03/08 19:36:26 by Tbouder          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,23 @@ CC		= 	gcc
 CFLAGS	= 	-Wall -Werror -Wextra
 
 SRC 	= 	main.c ft_dot_struct.c ft_max_xy.c\
-			ft_link_one_1.c ft_link_one_2.c ft_link_one_3.c ft_link_one_4.c \
-			ft_link_two_1.c ft_link_two_2.c ft_link_two_3.c ft_link_two_4.c \
-			ft_link_roots.c\
+			ft_link_roots.c ft_place_dots.c \
+			rot_0d/ft_link_one_1.c rot_0d/ft_link_two_1.c \
+			rot_90d/ft_link_one_2.c rot_90d/ft_link_two_2.c \
+			rot_180d/ft_link_one_3.c rot_180d/ft_link_two_3.c \
+			rot_270d/ft_link_one_4.c rot_270d/ft_link_two_4.c \
 			ft_tools.c
 
 LIB		=	-Llibft -lft -Lminilibx_macos -lmlx -framework OpenGL \
 			-framework AppKit
 
-OBJ		=	$(SRC:.c=.o)
+OBJ		=	main.o ft_dot_struct.o ft_max_xy.o\
+			ft_link_roots.o ft_place_dots.o \
+			ft_link_one_1.o ft_link_two_1.o \
+			ft_link_one_2.o ft_link_two_2.o \
+			ft_link_one_3.o ft_link_two_3.o \
+			ft_link_one_4.o ft_link_two_4.o \
+			ft_tools.o
 
 HEADER 	=	libft/libft.h
 

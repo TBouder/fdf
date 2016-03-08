@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 18:49:55 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 19:37:26 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		window(char *name, t_dot *dot)
 	w.max_y = 1000;
 	w.obj_x = 0;
 	w.obj_y = 500;
-	w.rotation = 4;
+	w.rotation = 1;
 	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 	ft_create_fdf(w, 0);
