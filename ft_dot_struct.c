@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/02 12:32:53 by tbouder           #+#    #+#             */
-/*   Updated: 2016/02/21 19:58:31 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 13:36:39 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			ft_dotend(t_dot **dot, t_coo coo, int color, int id)
 	if (new_dot)
 	{
 		while (new_dot->next != NULL)
-			new_dot = new_dot->next;		
+			new_dot = new_dot->next;
 		new_dot->next = ft_dotnew(coo, color, id);
 	}
 	else
