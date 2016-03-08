@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 16:55:52 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 19:18:03 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** ft_sin(X) if for the orientation from down to top.
 */
 
-static void		ft_place_dots(t_win w, t_dot *dot)
+static void		ft_place_dots_1(t_win w, t_dot *dot)
 {
 	float		x;
 	float		y;
@@ -34,14 +34,42 @@ static void		ft_place_dots(t_win w, t_dot *dot)
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window,
 					(w.obj_x) + (x + i),
-					(w.obj_y) + (y + i) * ft_sin(30),16777215);
+					(w.obj_y) + (y + i) * ft_sin(30), 16777215);
 			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window,
 					(w.obj_x) + (x + i),
-					(w.obj_y) + (y - i) * ft_sin(30),16777215);
+					(w.obj_y) + (y - i) * ft_sin(30), 16777215);
 		}
 		dot->x = lroundf((w.obj_x) + (x));
 		dot->y = lroundf((w.obj_y) + (y) * ft_sin(30));
+		dot = dot->next;
+	}
+}
+
+static void		ft_place_dots_2(t_win w, t_dot *dot)
+{
+	float		x;
+	float		y;
+	int			i;
+
+	while (dot)
+	{
+		i = -1;
+		x = -((dot->x - dot->y) * w.zoom + (dot->z * w.zoom * 2.7 * w.zoom_z));
+		y = (-dot->y - dot->x) * w.zoom;
+		while (i++ < w.zoom)
+		{
+			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
+				mlx_pixel_put(w.mlx, w.window,
+					(w.obj_x + w.max_x / 4) + (x - i) * ft_sin(30),
+					(w.obj_y + w.max_y / 4) + (y - i), 16777215);
+			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
+				mlx_pixel_put(w.mlx, w.window,
+					(w.obj_x + w.max_x / 4) + (x + i) * ft_sin(30),
+					(w.obj_y + w.max_y / 4) + (y - i), 16777215);
+		}
+		dot->x = lroundf((w.obj_x + w.max_x / 4) + (x) * ft_sin(30));
+		dot->y = lroundf((w.obj_y + w.max_y / 4) + (y));
 		dot = dot->next;
 	}
 }
@@ -74,6 +102,33 @@ static void		ft_place_dots_3(t_win w, t_dot *dot)
 	}
 }
 
+static void		ft_place_dots_4(t_win w, t_dot *dot)
+{
+	float		x;
+	float		y;
+	int			i;
+
+	while (dot)
+	{
+		i = -1;
+		x = -((dot->x - dot->y) * w.zoom + (dot->z * w.zoom * 2.7 * w.zoom_z));
+		y = (dot->y + dot->x) * w.zoom;
+		while (i++ < w.zoom)
+		{
+			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
+				mlx_pixel_put(w.mlx, w.window,
+					(250) + (x - i) * ft_sin(-30),
+					(251) + (y + i), 16777215);
+			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
+				mlx_pixel_put(w.mlx, w.window,
+					(250) + (x + i) * ft_sin(-30),
+					(251) + (y + i), 16777215);
+		}
+		dot->x = lroundf((250) + (x) * ft_sin(-30));
+		dot->y = lroundf((251) + (y));
+		dot = dot->next;
+	}
+}
 /*
 ** Display some info on screen
 */
@@ -101,19 +156,30 @@ void			ft_print_infos(t_win w)
 
 void			ft_create_fdf(t_win w, int i)
 {
-	if (i == 1)
-		ft_restore_origin(w.dot);
+	i == 1 ? ft_restore_origin(w.dot) : 0;
 	ft_print_infos(w);
 	if (w.rotation == 1)
 	{
-		ft_place_dots(w, w.dot);
-		ft_link_one(w, w.dot);
-		ft_link_two(w, w.dot);
+		ft_place_dots_1(w, w.dot);
+		ft_link_one_1(w, w.dot);
+		ft_link_two_1(w, w.dot);
+	}
+	else if (w.rotation == 2)
+	{
+		ft_place_dots_2(w, w.dot);
+		ft_link_one_2(w, w.dot);
+		ft_link_two_2(w, w.dot);
 	}
 	else if (w.rotation == 3)
 	{
 		ft_place_dots_3(w, w.dot);
 		ft_link_one_3(w, w.dot);
 		ft_link_two_3(w, w.dot);
+	}
+	else if (w.rotation == 4)
+	{
+		ft_place_dots_4(w, w.dot);
+		ft_link_one_4(w, w.dot);
+		ft_link_two_4(w, w.dot);
 	}
 }
