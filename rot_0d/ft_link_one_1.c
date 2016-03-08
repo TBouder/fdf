@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_link_one_4.c                                    :+:      :+:    :+:   */
+/*   ft_link_one_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/21 20:01:41 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:14:40 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 19:28:50 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_fdf.h"
+#include "../ft_fdf.h"
 
 static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
 {
 	float		x;
 	float		y;
-	float		coef_x;
+	float		coef_y;
 
-	coef_x = (float)w.zoom / (dot_next->x - dot->x);
+	coef_y = (float)w.zoom / (-(dot_next->y - dot->y));
 	x = dot->x;
 	y = dot->y;
-	while (x < dot_next->x && dot->o_y == dot_next->o_y && coef_x > 0)
+	while (coef_y > 0 && y > dot_next->y && dot->o_y == dot_next->o_y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
-		y += coef_x;
-		x += 1;
+		x += coef_y;
+		y -= 1;
 	}
-	while (x > dot_next->x && dot->o_y == dot_next->o_y && coef_x < 0 )
+	while (coef_y < 0 && y < dot_next->y && dot->o_y == dot_next->o_y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
-		y -= coef_x;
-		x -= 1;
+		x -= coef_y;
+		y += 1;
 	}
 }
 
@@ -39,26 +39,26 @@ static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
 {
 	float		x;
 	float		y;
-	float		coef_x;
+	float		coef_y;
 
-	coef_x = (float)w.zoom / (dot_next->x - dot->x);
+	coef_y = (float)w.zoom / (dot_next->y - dot->y);
 	x = dot->x;
 	y = dot->y;
-	while (x < dot_next->x && coef_x > 0)
+	while (coef_y > 0 && y < dot_next->y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 3113674);
-		y += coef_x;
-		x += 1;
+		x += coef_y;
+		y += 1;
 	}
-	while (x > dot_next->x && coef_x < 0)
+	while (coef_y < 0 && y > dot_next->y)
 	{
 		mlx_pixel_put(w.mlx, w.window, x, y, 3113674);
-		y -= coef_x;
-		x -= 1;
+		x -= coef_y;
+		y -= 1;
 	}
 }
 
-void			ft_link_one_4(t_win w, t_dot *dot)
+void			ft_link_one_1(t_win w, t_dot *dot)
 {
 	t_dot	*dot_next;
 
