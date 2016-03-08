@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:59:27 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 22:42:26 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,13 @@ void				ft_link_two_4(t_win w, t_dot *dot);
 */
 
 void				ft_extract_map(char **str, char *s, t_dot **dot, t_coo *coo);
-int					ft_nbrounded_down(float nb);
 void				ft_save_origin(t_dot *dot);
 void				ft_restore_origin(t_dot *dot);
+void				ft_exit(t_win *w);
+
+/*
+** In ft_help
+*/
+void				ft_help(t_win *w);
 
 #endif

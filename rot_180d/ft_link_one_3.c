@@ -6,13 +6,13 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/24 13:26:14 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:29:18 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 22:51:30 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_fdf.h"
 
-static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
+static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next)
 {
 	float		x;
 	float		y;
@@ -23,19 +23,19 @@ static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
 	y = dot->y;
 	while (y < dot_next->y && y < dot_next->y)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
+		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
 		x += coef_y;
 		y += 1;
 	}
 	while (y > dot_next->y && y > dot_next->y)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
+		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
 		x -= coef_y;
 		y -= 1;
 	}
 }
 
-static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
+static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next)
 {
 	float		x;
 	float		y;
@@ -46,13 +46,13 @@ static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
 	y = dot->y;
 	while (y > dot_next->y && y > dot_next->y && dot->o_y == dot_next->o_y)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 3113674);
+		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
 		x += coef_y;
 		y -= 1;
 	}
 	while (y < dot_next->y && y < dot_next->y && dot->o_y == dot_next->o_y)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 3113674);
+		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
 		x -= coef_y;
 		y += 1;
 	}
