@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:53:20 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 20:14:54 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void			ft_exit(t_win *w)
 {
 	mlx_destroy_window(w->mlx, w->window);
 	free(w->mlx);
+	free(w->dot);
 	exit(0);
 }
 
@@ -74,13 +75,11 @@ int				ft_putkey(int key, t_win *w)
 	return (1);
 }
 
-void		window(char *name, t_dot *dot)
+void		window(char *name, t_dot **dot)
 {
 	t_win	w;
 
-	w.x = ft_max_x(dot);
-	if ((w.mlx = mlx_init()) == NULL)
-		ft_exit(&w);
+	w.x = ft_max_x(*dot);
 	w.name = name;
 	w.zoom = ZOOM;
 	w.zoom_z = 1;
@@ -89,8 +88,13 @@ void		window(char *name, t_dot *dot)
 	w.obj_x = 0;
 	w.obj_y = 500;
 	w.rotation = 1;
-	w.dot = dot;
-	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
+	w.dot = *dot;
+	dot = NULL;
+	free(dot);
+	if ((w.mlx = mlx_init()) == NULL)
+		ft_exit(&w);
+	if ((w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name)) == NULL)
+		ft_exit(&w);
 	ft_create_fdf(w, 0);
 	mlx_key_hook(w.window, ft_putkey, &w);
 	mlx_loop(w.mlx);
@@ -116,7 +120,7 @@ int			main(int ac, char **av)
 		ft_save_origin(dot);
 		ft_strdel(&s);
 		ft_strdel(str);
-		window(av[1], dot);
+		window(av[1], &dot);
 	}
 	return (0);
 }
