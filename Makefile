@@ -6,7 +6,7 @@
 #    By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 15:48:47 by tbouder           #+#    #+#              #
-#    Updated: 2016/03/08 19:36:26 by Tbouder          ###   ########.fr        #
+#    Updated: 2016/03/08 19:59:47 by Tbouder          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,23 +40,23 @@ all: $(NAME)
 
 .SILENT : $(NAME)
 $(NAME):
-	# cd libft/ && $(MAKE) re
-	# cd minilibx_macos/ && $(MAKE) re
+	cd libft/ && $(MAKE) re
+	cd minilibx_macos/ && $(MAKE) re
 	$(CC) $(CFLAGS) -c $(HEADER) $(SRC)
 	$(CC) -o $(NAME) $(OBJ) $(LIB)
 
 .SILENT : clean
 clean:
-	# cd libft/ && $(MAKE) clean
-	# cd minilibx_macos/ && $(MAKE) clean
+	cd libft/ && $(MAKE) clean
+	cd minilibx_macos/ && $(MAKE) clean
 	rm -f $(OBJ)
 	rm -f *.gch
 	rm -rf *.dSYM
 
 .SILENT : fclean
 fclean: clean
-	# cd libft/ && $(MAKE) fclean
-	# cd minilibx_macos/ && $(MAKE) clean
+	cd libft/ && $(MAKE) fclean
+	cd minilibx_macos/ && $(MAKE) clean
 	rm -f $(NAME)
 
 re: fclean all

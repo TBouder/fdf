@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 19:33:42 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 19:37:45 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 19:57:53 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,15 +118,15 @@ void		ft_place_dots_4(t_win w, t_dot *dot)
 		{
 			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window,
-					(250) + (x - i) * ft_sin(-30),
-					(251) + (y + i), 16777215);
+					(w.obj_x + w.max_x / 4) + (x - i) * ft_sin(-30),
+					(w.obj_y / 2) + (y + i), 16777215);
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window,
-					(250) + (x + i) * ft_sin(-30),
-					(251) + (y + i), 16777215);
+					(w.obj_x + w.max_x / 4) + (x + i) * ft_sin(-30),
+					(w.obj_y / 2) + (y + i), 16777215);
 		}
-		dot->x = lroundf((250) + (x) * ft_sin(-30));
-		dot->y = lroundf((251) + (y));
+		dot->x = lroundf((w.obj_x + w.max_x / 4) + (x) * ft_sin(-30));
+		dot->y = lroundf((w.obj_y / 2) + (y));
 		dot = dot->next;
 	}
 }
