@@ -6,14 +6,14 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 13:24:32 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 16:51:25 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
 
 /*
-** BONUS : 
+** BONUS :
 ** Deplacement de l'object (gauche, droite, haut, bas)
 ** Zoom/Dezoom de l'objet
 ** Zoom/Dezoom de la hauteur individuellement
@@ -40,31 +40,30 @@ void		ft_dotprint(t_dot *begin_dot) //TO DELETE
 
 /*-----------*/
 
-int				ft_putkey(int keycode, t_win *w)
+int				ft_putkey(int key, t_win *w)
 {
-
 	ft_putstr("key event ");
-	ft_nbrendl(keycode);
-	if (keycode == 24 || keycode == 69 || keycode == 27 || keycode == 78
-		|| keycode == 123 || keycode == 0 || keycode == 124 || keycode == 2
-		|| keycode == 125 || keycode == 1 || keycode == 126 || keycode == 13
-		|| keycode == 15 || keycode == 3)
+	ft_nbrendl(key);
+	if ((key >= 18 && key <= 21) || (key >= 123 && key <= 126)
+	|| (key >= 0 && key <= 3) || key == 13 || key == 15 || key == 24
+	|| key == 69 || key == 27 || key == 78)
 	{
 		mlx_clear_window(w->mlx, w->window);
-		keycode == 24 || keycode == 69 ? w->zoom += 1 : 0;
-		keycode == 27 || keycode == 78 ? w->zoom -= 1 : 0;
-
-		keycode == 123 || keycode == 0 ? w->obj_x -= 10 : 0;
-		keycode == 124 || keycode == 2 ? w->obj_x += 10 : 0;
-		keycode == 125 || keycode == 1 ? w->obj_y += 10 : 0;
-		keycode == 126 || keycode == 13 ? w->obj_y -= 10 : 0;
-
-		keycode == 15 ? w->zoom_z += 1 : 0;
-		keycode == 3 ? w->zoom_z -= 1 : 0;
-
+		key == 24 || key == 69 ? w->zoom += 1 : 0;
+		key == 27 || key == 78 ? w->zoom -= 1 : 0;
+		key == 123 || key == 0 ? w->obj_x -= 10 : 0;
+		key == 124 || key == 2 ? w->obj_x += 10 : 0;
+		key == 125 || key == 1 ? w->obj_y += 10 : 0;
+		key == 126 || key == 13 ? w->obj_y -= 10 : 0;
+		key == 15 ? w->zoom_z += 1 : 0;
+		key == 3 ? w->zoom_z -= 1 : 0;
+		key == 18 ? w->rotation = 1 : 0;
+		key == 19 ? w->rotation = 2 : 0;
+		key == 20 ? w->rotation = 3 : 0;
+		key == 21 ? w->rotation = 4 : 0;
 		ft_create_fdf(*w, 1);
 	}
-	if (keycode == 53)
+	if (key == 53)
 	{
 		mlx_destroy_window(w->mlx, w->window);
 		free(w->mlx);
@@ -88,6 +87,7 @@ void		window(char *name, t_dot *dot)
 	w.max_y = 1000;
 	w.obj_x = 0;
 	w.obj_y = 500;
+	w.rotation = 1;
 	w.dot = dot;
 	w.window = mlx_new_window(w.mlx, w.max_x, w.max_y, w.name);
 	ft_create_fdf(w, 0);

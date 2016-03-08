@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_link_one_v02.c                                  :+:      :+:    :+:   */
+/*   ft_link_two_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/24 13:26:14 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 11:20:40 by Tbouder          ###   ########.fr       */
+/*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
+/*   Updated: 2016/03/08 16:38:06 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
 
-static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
+static void		ft_link_down_to_up_v(t_win w, t_dot *dot, t_dot *dot_next) //Red
 {
 	float		x;
 	float		y;
@@ -21,15 +21,21 @@ static void		ft_link_down_to_up_h(t_win w, t_dot *dot, t_dot *dot_next) //GREEN
 	coef_y = (float)w.zoom / (-(dot_next->y - dot->y));
 	x = dot->x;
 	y = dot->y;
-	while (y < dot_next->y)
+	while (y < dot_next->y && coef_y < 0)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 65408);
+		mlx_pixel_put(w.mlx, w.window, x, y, 16669806);
 		x += coef_y;
 		y += 1;
 	}
+	while (y > dot_next->y && coef_y > 0)
+	{
+		mlx_pixel_put(w.mlx, w.window, x, y, 16669806);
+		x -= coef_y;
+		y -= 1;
+	}
 }
 
-static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
+static void		ft_link_up_to_down_v(t_win w, t_dot *dot, t_dot *dot_next) //Orange
 {
 	float		x;
 	float		y;
@@ -38,26 +44,32 @@ static void		ft_link_up_to_down_h(t_win w, t_dot *dot, t_dot *dot_next) //BLUE
 	coef_y = (float)w.zoom / (dot_next->y - dot->y);
 	x = dot->x;
 	y = dot->y;
-	while (y > dot_next->y)
+	while (y > dot_next->y && coef_y < 0)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, 3113674);
+		mlx_pixel_put(w.mlx, w.window, x, y, 16610324);
 		x += coef_y;
 		y -= 1;
 	}
+	while (y < dot_next->y && coef_y > 0)
+	{
+		mlx_pixel_put(w.mlx, w.window, x, y, 16610324);
+		x -= coef_y;
+		y += 1;
+	}
 }
 
-void			ft_link_one_v02(t_win w, t_dot *dot)
+void			ft_link_two_3(t_win w, t_dot *dot)
 {
 	t_dot	*dot_next;
 
-	dot_next = dot->next;
+	dot_next = ft_dotnext(dot, w.x);
 	while (dot_next)
 	{
-		if (dot_next->z < dot->z && dot->id % w.x != w.x - 1)
-			ft_link_down_to_up_h(w, dot, dot_next);
+		if (dot_next->z < dot->z)
+			ft_link_down_to_up_v(w, dot, dot_next);
 		if (dot_next->z > dot->z)
-			ft_link_up_to_down_h(w, dot, dot_next);
+			ft_link_up_to_down_v(w, dot, dot_next);
 		dot = dot->next;
-		dot_next = dot->next;
+		dot_next = ft_dotnext(dot, w.x);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/02/25 12:28:16 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/08 16:42:52 by Tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_win
 	int				zoom;
 	int				zoom_z;
 	int				x;
+	int				rotation;
 	t_dot			*dot;
 }					t_win;
 
@@ -84,8 +85,9 @@ int					ft_max_y(t_dot *dot);
 
 void				ft_create_fdf(t_win w, int i);
 void				ft_link_one(t_win w, t_dot *dot);
-void				ft_link_one_v02(t_win w, t_dot *dot);
+void				ft_link_one_3(t_win w, t_dot *dot);
 void				ft_link_two(t_win w, t_dot *dot);
+void				ft_link_two_3(t_win w, t_dot *dot);
 
 /*
 ** In ft_tools
