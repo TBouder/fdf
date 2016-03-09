@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 13:32:25 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 22:33:07 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/09 16:09:33 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,13 @@ int				main(int ac, char **av)
 	if (ac == 2 && fd != -1)
 	{
 		coo.y = 1;
-		while (get_next_line(fd, &s))
+		while (get_next_line(fd, &s) == 1)
 			ft_extract_map(str, s, &dot, &coo);
 		ft_save_origin(dot);
 		ft_strdel(&s);
 		ft_strdel(str);
-		window(av[1], &dot);
+		if (dot != NULL)
+			window(av[1], &dot);
 	}
 	return (0);
 }

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+         #
+#    By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 15:48:47 by tbouder           #+#    #+#              #
-#    Updated: 2016/03/08 22:28:19 by Tbouder          ###   ########.fr        #
+#    Updated: 2016/03/09 16:06:57 by tbouder          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	= 	fdf
 
-CC		= 	gcc
+CC			= 	gcc
 CFLAGS	= 	-Wall -Werror -Wextra -g
 
 SRC 	= 	main.c ft_dot_struct.c ft_max_xy.c\
