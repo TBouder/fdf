@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:35:53 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/09 15:20:43 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/09 17:47:59 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ void		ft_save_origin(t_dot *dot)
 ** The ft_restore_origin() function loads the original coor of x, y, z.
 */
 
-void		ft_restore_origin(t_dot *dot)
+void		ft_restore_origin(t_dot *dot, t_win w)
 {
 	while (dot)
 	{
 		dot->x = dot->o_x;
 		dot->y = dot->o_y;
 		dot->z = dot->o_z;
+		if (w.zoom_z == 0)
+			dot->z = 0;
 		dot = dot->next;
 	}
 }
