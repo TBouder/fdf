@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fdf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/01 14:23:56 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 22:42:26 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/09 16:09:23 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,8 @@ void				ft_link_two_4(t_win w, t_dot *dot);
 ** In ft_tools
 */
 
-void				ft_extract_map(char **str, char *s, t_dot **dot, t_coo *coo);
+void				ft_extract_map(char **str, char *s, t_dot **dot,
+						t_coo *coo);
 void				ft_save_origin(t_dot *dot);
 void				ft_restore_origin(t_dot *dot);
 void				ft_exit(t_win *w);
