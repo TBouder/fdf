@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/08 19:33:42 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/09 18:49:02 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/09 19:13:02 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void		ft_place_dots_1(t_win w, t_dot *dot)
 		{
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x) + (x + i),
-					(w.obj_y) + (y + i) * ft_sin(30), (w.zoom_z != 0) ? dot->color : 16777215);
+					(w.obj_x) + (x + i), (w.obj_y) + (y + i) * ft_sin(30),
+					(w.zoom_z != 0) ? dot->color : 16777215);
 			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
 				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x) + (x + i),
-					(w.obj_y) + (y - i) * ft_sin(30), (w.zoom_z != 0) ? dot->color : 16777215);
+					(w.obj_x) + (x + i), (w.obj_y) + (y - i) * ft_sin(30),
+					(w.zoom_z != 0) ? dot->color : 16777215);
 		}
 		dot->x = lroundf((w.obj_x) + (x));
 		dot->y = lroundf((w.obj_y) + (y) * ft_sin(30));
@@ -61,13 +61,13 @@ void		ft_place_dots_2(t_win w, t_dot *dot)
 		while (i++ < w.zoom)
 		{
 			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x + w.max_x / 4) + (x - i) * ft_sin(30),
-					(w.obj_y + w.max_y / 4) + (y - i), 16777215);
+				mlx_pixel_put(w.mlx, w.window, (w.obj_x + w.max_x / 4) + (x - i)
+				* ft_sin(30), (w.obj_y + w.max_y / 4) + (y - i),
+				(w.zoom_z != 0) ? dot->color : 16777215);
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x + w.max_x / 4) + (x + i) * ft_sin(30),
-					(w.obj_y + w.max_y / 4) + (y - i), 16777215);
+				mlx_pixel_put(w.mlx, w.window, (w.obj_x + w.max_x / 4) + (x + i)
+				* ft_sin(30), (w.obj_y + w.max_y / 4) + (y - i),
+				(w.zoom_z != 0) ? dot->color : 16777215);
 		}
 		dot->x = lroundf((w.obj_x + w.max_x / 4) + (x) * ft_sin(30));
 		dot->y = lroundf((w.obj_y + w.max_y / 4) + (y));
@@ -89,13 +89,13 @@ void		ft_place_dots_3(t_win w, t_dot *dot)
 		while (i++ < w.zoom)
 		{
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x + w.max_x / 2) + (x - i),
-					(w.obj_y) + (y - i) * ft_sin(30), 16777215);
+				mlx_pixel_put(w.mlx, w.window, (w.obj_x + w.max_x / 2)
+				+ (x - i), (w.obj_y) + (y - i) * ft_sin(30),
+				(w.zoom_z != 0) ? dot->color : 16777215);
 			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x + w.max_x / 2) + (x - i),
-					(w.obj_y) + (y + i) * ft_sin(30), 16777215);
+				mlx_pixel_put(w.mlx, w.window, (w.obj_x + w.max_x / 2)
+				+ (x - i), (w.obj_y) + (y + i) * ft_sin(30),
+				(w.zoom_z != 0) ? dot->color : 16777215);
 		}
 		dot->x = lroundf((w.obj_x + w.max_x / 2) + (x));
 		dot->y = lroundf((w.obj_y) + (y) * ft_sin(30));
@@ -117,13 +117,13 @@ void		ft_place_dots_4(t_win w, t_dot *dot)
 		while (i++ < w.zoom)
 		{
 			if (dot->next && dot->x % w.x != 0 && dot->next->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x + w.max_x / 4) + (x - i) * ft_sin(-30),
-					(w.obj_y / 2) + (y + i), 16777215);
+				mlx_pixel_put(w.mlx, w.window, (w.obj_x + w.max_x / 4)
+				+ (x - i) * ft_sin(-30), (w.obj_y / 2) + (y + i),
+				(w.zoom_z != 0) ? dot->color : 16777215);
 			if (ft_dotnext(dot, w.x) && ft_dotnext(dot, w.x)->z == dot->z)
-				mlx_pixel_put(w.mlx, w.window,
-					(w.obj_x + w.max_x / 4) + (x + i) * ft_sin(-30),
-					(w.obj_y / 2) + (y + i), 16777215);
+				mlx_pixel_put(w.mlx, w.window, (w.obj_x + w.max_x / 4)
+				+ (x + i) * ft_sin(-30), (w.obj_y / 2) + (y + i),
+				(w.zoom_z != 0) ? dot->color : 16777215);
 		}
 		dot->x = lroundf((w.obj_x + w.max_x / 4) + (x) * ft_sin(-30));
 		dot->y = lroundf((w.obj_y / 2) + (y));
