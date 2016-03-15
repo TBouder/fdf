@@ -6,7 +6,7 @@
 /*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 18:44:10 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/09 18:44:42 by tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/09 19:06:11 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void			ft_create_fdf(t_win w, int i)
 	if (w.rotation == 1)
 	{
 		ft_place_dots_1(w, w.dot);
-		// ft_link_one_1(w, w.dot);
+		ft_link_one_1(w, w.dot);
 		ft_link_two_1(w, w.dot);
 	}
 	else if (w.rotation == 2)

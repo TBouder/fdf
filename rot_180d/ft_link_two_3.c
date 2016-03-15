@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_link_two_3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Tbouder <Tbouder@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 19:23:22 by Tbouder           #+#    #+#             */
-/*   Updated: 2016/03/08 22:51:40 by Tbouder          ###   ########.fr       */
+/*   Updated: 2016/03/09 19:09:47 by tbouder          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static void		ft_link_up_to_down_v(t_win w, t_dot *dot, t_dot *dot_next)
 	y = dot->y;
 	while (y > dot_next->y && coef_y < 0)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
+		mlx_pixel_put(w.mlx, w.window, x, y, dot_next->color);
 		x += coef_y;
 		y -= 1;
 	}
 	while (y < dot_next->y && coef_y > 0)
 	{
-		mlx_pixel_put(w.mlx, w.window, x, y, dot->color);
+		mlx_pixel_put(w.mlx, w.window, x, y, dot_next->color);
 		x -= coef_y;
 		y += 1;
 	}
