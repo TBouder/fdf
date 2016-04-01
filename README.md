@@ -4,3 +4,4 @@
 
 Requirements :
 [LIBFT](https://bitbucket.org/Tbouder/libft)
+[MLX](https://bitbucket.org/workat42/minilibx_macos)
