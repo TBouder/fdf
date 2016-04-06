@@ -11,7 +11,7 @@
 - [x] Displaying some info on the top-left corner  
 - [x] Color management  
 - [x] Possibility to move the map with arrows or WASD  
-- [x] Possibility to zoom globaly with + or -  
+- [x] Possibility to zoom globally with + or -  
 - [x] Possibility to change the height ratio with r or f  
 - [x] Possibility to rotate the map with 1, 2, 3 or 4  
 
