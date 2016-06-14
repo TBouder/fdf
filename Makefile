@@ -6,14 +6,14 @@
 #    By: tbouder <tbouder@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/03 15:48:47 by tbouder           #+#    #+#              #
-#    Updated: 2016/03/09 19:13:21 by tbouder          ###   ########.fr        #
+#    Updated: 2016/06/03 15:31:49 by tbouder          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= 	fdf
 
 CC			= 	gcc
-CFLAGS	= 	-Wall -Werror -Wextra -g
+CFLAGS		= 	-Wall -Werror -Wextra -g
 
 SRC 		= 	main.c ft_dot_struct.c ft_max_xy.c\
 				ft_link_roots.c ft_place_dots.c \
